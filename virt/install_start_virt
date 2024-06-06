@@ -1,0 +1,9 @@
+#!/usr/bin/env bash 
+
+# Install virt services
+sudo dnf install qemu-kvm libvirt virt-install virt-viewer virt-manager
+
+# For loop to start the services (is this needed)
+for drv in qemu network nodedev nwfilter secret storage interface; do sudo systemctl start virt${drv}d{,-ro,-    admin}.socket;done
+
+# virt-host-validate (checks that these services are up and running)

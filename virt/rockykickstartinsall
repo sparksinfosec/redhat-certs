@@ -1,0 +1,8 @@
+#!/usr/bin/env bash 
+
+# Based on the default anaconda-ks.cfg file
+# Rocky 9.4 virt install
+
+sudo virt-install --name rocky2 --memory 2048 --disk path=/var/lib/libvirt/images/rocky2-ks.qcow2,format=qcow2,size=20 --location="$HOME/Downloads/Rocky-9.4-x86_64-dvd.iso" --initrd-inject="$HOME/Downloads/anaconda-ks.cfg" --extra-arg "inst.ks=file:/anaconda-ks.cfg inst.ip=dhcp inst.console=ttyS0,115200n8" --os-variant=rhel9.4 --machine=q35 --boot=uefi
+
+# Breaking down each to understand what is being passed

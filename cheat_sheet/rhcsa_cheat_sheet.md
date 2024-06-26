@@ -149,7 +149,30 @@
         * star utility 
         * tar -xvf /archivename.tar file-you-want-to-extract (extract one file out of a archive)
     * Using Compression
-        * left off line 1117
+        * gzip or bzip2 
+        * Compressing after an archive (home.tar.gzip)
+        * xz utility 
+        * gunzip and bunzip2
+        * Use with tar 
+            * -z (gzip)
+            * -J (xz)
+            * -j (bzip2)
+            * Don't need to use option when extracting (tar should recognize)
+    * Overview of tar options
+        * c (create an archive)
+        * v (show verbose output)
+        * t (show content of an archive)
+        * z (compress/decompress gzip)
+        * j (compress/decompress bzip2)
+        * J (compress/decompress xz)
+        * x (extract an archive)
+        * u (updates an archive only newer files will be written to the archive)
+        * C (change the output dir of the command)
+        * r (appends files to an archive)
+
+## Working with text files 
+
+* 
             
 
 

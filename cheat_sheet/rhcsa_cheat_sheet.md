@@ -104,3 +104,52 @@
         * mkdir
         * rmdir (removes if the dir is empy and does not contain any files)
     * Working with absolute and relative pathnames 
+    * Listing files and dirs 
+        * ls -l (long listing)
+        * ls -a (shows all including hidden files)
+        * ls -lrt
+            * -t option shows sorted based on modification date 
+            * Most recently modified last because of -r option
+        * ls -d (shows the names of dirs)
+        * ls -R (recursive)
+    * Copying files and dirs 
+        * cp /path_to_file /path_to_destination
+        * -R option
+            * recursively copy an entire subdir
+        * -a (copy in archive mode ensure permissions are kept when copied)
+        * Copy hidden files 
+    * Moving files and dirs 
+        * mv 
+            * Can rename file as well
+        * mkdir
+    * Deleting files and dirs 
+        * rm 
+            * -f (force)
+            * -r (recursive)
+            * -i (interactive)
+* Using links 
+    * Symbolic and Hard links 
+    * ln (to create links)
+        * -s (for symbolic)
+    * Safely removing links 
+* Working with archives and compressed files 
+    * Creating archives with tar 
+        * tar -cf archivename.tar /files-you-want-to-archive
+        * -v (verbose)
+        * You need at least read permissions on the file and execute permissions on teh dir the file resides in 
+        * Originally tar did not use dash (-) in front of options
+            * still supported 
+        * -r (add a file to an existing archive)
+        * -u (update an existing archive, write newer versions of files)
+    * Monitoring and extracting tar files 
+        * -t (see what files are in the archive before extracting)
+        * tar -xvf /archivename.tar (extract contents, default current dir)
+        * -C (targetdir)
+            * tar -xvf archive.tar -C /tmp
+        * star utility 
+        * tar -xvf /archivename.tar file-you-want-to-extract (extract one file out of a archive)
+    * Using Compression
+        * left off line 1117
+            
+
+

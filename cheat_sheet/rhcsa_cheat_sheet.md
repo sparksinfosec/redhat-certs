@@ -172,7 +172,71 @@
 
 ## Working with text files 
 
-* 
-            
+* Essential tools for managing text content 
+    * less (opens the file in a page)
+    * cat (dumps the content of the text file to the screen)
+    * head (shows the top of the text file)
+    * tail (shows the bottom of the text file)
+    * cut (used to filter specific columns or characters)
+    * sort (sort contents)
+    * wc (counts the number of lines, words, and characters in a text file)
+* Head and tail 
+    * -n (adjust number of lines (default of 10))
+    * -f (refreshes the display with new lines are added to the file tail -f /log/file)
+* Cut 
+    * -d (delimiter)
+    * -f (field)
+* Sort 
+    * -n (numeric order)
+    * -r (reverse)
+    * sort -k3 -t : /etc/passwd (field 3 separator :)
+* wc 
+    * Output defaults 
+        * number of lines 
+        * number of words
+        * number of characters
+* Regex 
+    * ^ (start of line)
+    * $ (end of line)
+    * Escaping in regex 
+    * Wild cards and multipliers 
+        * . (wildcard)
+        * [ ] (range of specific characters)
+        * * (matches zero or more of the previous character)
+        * ? (matches zero or one of the previous character)
+    * Extended Regular expressions 
+        * -E (grep)
+        * + (one or more times)
+        * ? (zero or one)
+    * Most significant regex 
+        * ^text (matches lines that start with specific text)
+        * text$ (matches lines that end with specific text)
+        * . (wildcard anysingle character)
+        * [abc] (range match a, b, or c)
+        * ? (extended regex match zero or one of the preceding character)
+        * + (extended regex match one or more of the preceding character)
+        * * (match zero to infinite number of previous character)
+        * \{2\} (match extactly two of the previous character)
+        * \{1,3\} (match a min of one and a max of three of the previous characters)
+        * colou?r (match zero or one of the previous character)
+        * (...) (used to group multiple characters so that regex can be applied to the group
+* Grep 
+    * -i (NOT case sensitive)
+    * -v (show lines that do not contain the regex)
+    * -r (searches files in the current dir and all subdirs)
+    * -e (lines matching more than one regex, used before each regex)
+    * -E (Extended regex)
+    * -A <number> (show <number> of lines after the matching regex)
+    * -B <number> (show <number> of lines before matching regex)
+* awk and sed 
+    * awk -F : '{ print $4 }' (-F delimiter $4 field)
+    * awk -F : '/user/ { print $4 }' /etc/passwd (searches for text user and print 4th field of matching lines)
+    * sed -n 5p /etc/passwd (print the 5th line from the password file)
+    * sed -i s/old-text/new-text/g ~/file (replace old-text with new-text globally)
+        * -i (write results to file default is STDOUT)
+    * sed -i -e '2d' ~/file (delete a line based on specific line number)
+    * sed -i -e '2d;20,25d' ~/file (delete lines 2 and 20-25 in file)
 
+## Connecting to RHEL 9
 
+*

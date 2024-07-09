@@ -239,4 +239,3 @@
 
 ## Connecting to RHEL 9
 
-* Working on a local console 

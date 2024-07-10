@@ -239,3 +239,10 @@
 
 ## Connecting to RHEL 9
 
+* Working on a local console 
+    * Console (the env the user is looking at)
+    * terminal (env that is opened to the console and provides access to nongraphical shell typically bash)
+    * You can have multiple terminals open on a console, you can not have multiple consoles open in one terminal 
+* sudo -i (open a root shell ask for users password)
+* su - (ask for root's password)
+* Left off line 1476

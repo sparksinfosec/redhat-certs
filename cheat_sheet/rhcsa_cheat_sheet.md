@@ -245,4 +245,124 @@
     * You can have multiple terminals open on a console, you can not have multiple consoles open in one terminal 
 * sudo -i (open a root shell ask for users password)
 * su - (ask for root's password)
-* Left off line 1476
+* Exercise 5-1 Working with several terminal windows simultaneously (part 1 line 1477)
+* Working with multiple terminals in a nongraphical env 
+    * In nongraphical env you only have one terminal interface 
+    * Virtual terminal 
+    * Terminal windows with key sequences Alt-F1 thru Alt-f6
+        * F1 (gives access to GNOME display manager (GDM graphical login))
+        * F2 (provides access to the current graphical console)
+        * F3 (gives access to the current graphical console)
+        * F4-F6 (gives access to nongraphical consoles)
+        * Additional TIP: chvt (chvt 4, chvt3, chvt 1)
+    * virtual console tty1 
+    * /dev/tty1 (corresponding device files, /dev/tty1 - /dev/tty6)
+    * graphical env requires Ctrl-Alt-Function
+* Understanding pseudo terminal devices 
+    * Every terminal in a Linux env has a device file 
+    * /dev/tty1 - /dev/tty6
+    * Referred to using numbers in the /dev/pts dir 
+* Booting, rebooting, and shutting down systems 
+    * Important for exam as you need to make sure to reboot and changes are persistent 
+    * Experienced admins can often trigger the right parameter to force a process to reread its configs 
+    * There are some scenarios that will require a reboot
+        * To recover from a serious problem such as server hang or kernel panic 
+        * To apply kernal updates (important one)
+        * To apply changes to kernel modules that are being used currently and therefore cannot be reloaded easily 
+    * When a server is rebooted all processes that are running need to be shutdown properly 
+    * memory buffers 
+    * systemd
+        * First process that is started when the server starts 
+        * Also responsible for managing all other processes, directly or indirectly 
+        * needs to make sure all processes are stopped properly 
+    * Few commands 
+        * systemctl reboot (or reboot)
+        * systemctl halt (or halt)
+        * systemctl poweroff (poweroff)
+    * Halt vs poweroff 
+        * The difference between these two commands is that poweroff talks to power management on the machine to shut off power on the machine 
+        * This often does not happen using halt 
+    * NOTE emergency reset option
+        * force a reset from a root shell 
+        * echo b > /proc/sysrq-trigger
+        * resets the machine without saving anything (only use if no other option)
+* Using SSH and related utilities 
+    * SSH (secure shell)
+    * Default port of 22 
+    * sshd server process and a ssh client 
+    * Not blocked by firewall 
+    * ssh -p <portnumber> (specify a port for ssh 
+    * ssh clients: putty, mobaxterm, kitty, mremoteng, bitvise, and xshell
+    * Password is the default config 
+    * ssh will default to the local user also 
+    * ssh root@server (specify a specific user)
+    * systemctl status sshd (show the sshd process is currently up and running)
+    * -v (verbose on ssh)
+    * public key fingerprint in ~/.ssh/known_hosts 
+    * ssh -Y (graphical)
+    * Common SSH options 
+        * -v (verbose help troubleshoot)
+        * -Y (graphical applications support)
+        * -p <PORT> (specify a non default port)
+    * /etc/ssh/ssh_config 
+        * FowardX11 yes 
+        * set default forward graphical applications thru an ssh session
+* Securely transferring files between systems 
+    * scp (command if you want the files copied)
+    * rsync (command to sync files)
+    * sftp (FTP command line syntax to transfer files using sshd)
+    * Using SCP to securely copy files 
+        * similar to the cp command 
+        * scp /etc/hosts server2:/tmp (cp /etc/hosts to /tmp dir on server2)
+        * scp root@server2:/etc/passwd ~ (connect to server2 as root, copy /etc/passwd to local home dir)
+        * -r (recursive copy of an entire subdir structure)
+        * scp -r server2:/etc/ /tmp (copy all of /etc/ on server2 to /tmp locally)
+        * -P (specify non default port)
+* Using SFTP to securely transfer files 
+    * scp = cp 
+    * sftp = FTP like interface 
+    * Requires sshd process on remote server
+    * put and get commands 
+    * Local dir is important: files will be stored in the current local dir 
+    * When uploading will be searched for in the local dir 
+* Using rsync to synchronize files 
+    * ssh to synchronize files between remote dir and local dir
+    * Advantage is taht only differences need to be considered 
+    * Delta sync 
+    * Common rsync options 
+        * -r (sync the entire dir tree)
+        * -l (copies symbolic links as symbolic links)
+        * -p (preserves permissions)
+        * -n (performs only a dry run, does not actually sync anything)
+        * -a (archive mode, ensures all subdir tress and all files properties will be syncd)
+        * -A (uses archive mode, and in addition syncs ACLs)
+        * -X (sync SELinux context as well)
+* Config key based auth for ssh 
+    * password as usually bad practice 
+    * .ssh/authorized_keys 
+    * to create a key pair 
+        * ssh-keygen
+    * copy public key over to target server 
+        * ssh-copy-id 
+    * Public key goes to remote server 
+    * When authenticating using key pairs, the user generates a hash derived from the private key 
+    * Exercise 5-5 connecting to a remote server with public/private keys 
+        * line 1701 part 1 
+* Summary 
+    * Learned the difference between consoles, terminals, and shells 
+    * Set up terminal sessions locally as well as remotely 
+    * SSH to connect to remote server and how to securely copy files between servers 
+* Define key terms 
+    * console 
+    * terminal 
+    * subshell
+    * reboot
+    * systemd 
+    * key based login
+    * public key 
+    * private key 
+
+## User and Group Management 
+
+* 
+

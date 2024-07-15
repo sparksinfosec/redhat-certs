@@ -364,5 +364,14 @@
 
 ## User and Group Management 
 
-* 
+* Following topics are covered:
+    * Understanding different user types 
+    * creating and managing user account
+    * creating and managing group accounts 
+* RHCSA objectives 
+    * Create, delete, and modify local user accounts 
+    * Change passwords and adjust password aging for local user accounts 
+    * Create, delete, and modify local groups and group membership
+    * Config superuser access 
+* left off line 1750
 

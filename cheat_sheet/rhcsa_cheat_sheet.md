@@ -373,5 +373,69 @@
     * Change passwords and adjust password aging for local user accounts 
     * Create, delete, and modify local groups and group membership
     * Config superuser access 
-* left off line 1750
+* Understanding different user types 
+    * Privileged and unprivileged users 
+    * root (default privileged user)
+    * All other non admin tasks an unpriviledged user should be used 
+    * RHEL 9 root user account is often disable (during install this can be enabled)
+    * sudo when admin privileges are needed 
+    * id (command)
+        * Get information about a user account
+        * See details about the current user
+        * OR can specify the user id user_name
+    * Working as root 
+        * super user 
+        * Some task require root privileges 
+        * examples include 
+            * installing software 
+            * managing users 
+            * creating partitions on disk devices 
+            * generally speaking all tasks that involve direct access to devices need root permissions 
+        * Logging in directly as root is not recommended 
+        * Elevating permissions is recommended 
+    * Methods to run tasks with elevated permissions 
+        * su
+            * opens a subshell as a different user, with the advantage that commands are executed as root only in the subshell
+        * sudo 
+            * allows authorized user to work with admin privileges 
+        * PolicyKit 
+            * enables you to set up graphical utilities to run with admin privileges 
+    * Using su 
+        * Requires root password (or password of user you are switching too)
+        * su (by itself root is implied)
+        * Acquire the credentials of the target user 
+        * subshell that is started when using su is an env of the target user account 
+            * But env settings for that user account have not been set 
+        * If you need complete access to the entire env of the user account (su -)
+            * Starts a login shell (all scripts that make up the user env are processed)
+        * su - is better than using su 
+    * Sudo 
+        * Admin can config sudo access to grant specific user admin permissions to perform specific tasks 
+        * This approach is considered more secure (admin permissions only while running specific commands)
+        * Can set a user as admin during installation
+        * Can also add user as a member of the wheel group 
+        * Add user to group wheel 
+            1. usermod -aG wheel user (Add user to wheel group via usermod)
+            1. visudo (make sure the line: %wheel ALL=(ALL) ALL is in the sudoer file)
+        * Can also use visudo to edit /etc/sudoers and gives user access to specific commands 
+            * linda ALL=/usr/sbin/useradd, /usr/bin/password
+            * NOTE this allows linda to change password for all user even root 
+            * linda ALL=usr/sbin/useradd, /usr/bin/passwd, ! /usr/bin/passwd root
+            * Allows linda to change password for all user except root 
+        * Assign sudo privileges to individual users or groups of users, visudo (edit /etc/sudoers file)
+        * TIP: When using sudo and entering a password a token is generated 
+            * By default token is valid for 5 minutes 
+            * using visudo (edit the /etc/sudoers file)
+            * Defaults timestamp_timeout=240 (extends the timeout to 240 minutes)
+        * Best practice is to use drop in files in the dir /etc/sudoers.d
+        * TIP: sudo with pipes 
+            * sudo sh -c (can use any command containing a pipe as its arg)
+    * PolicyKit
+        * GUI 
+        * Don't need to know policykit 
+        * GOOD TO KNOW pkexec command tho 
+        * pkexec (command as an alt to sudo in case you ever completely lose sudo access to a system)
+* Creating and managing user accounts 
+    * System accounts and normal accounts 
+
 

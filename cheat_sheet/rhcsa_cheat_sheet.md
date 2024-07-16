@@ -3,7 +3,18 @@
 * Pulled together from RHCSA Cert Guide 
 * Meant to be a quick and easy reference point compared to more comprehensive notes and labs in prep for the RHCSA 
 
-## Basic/Essential Tools 
+## Part 1 Performing Basic System Management Tasks
+
+* Installing Red hat enterprise linux 
+* Using essential tools 
+* Essential file management tools 
+* Working with text files 
+* Connecting to Red Hat Enterprise Linux 
+* User and Group Management 
+* Permissions Management 
+* Configuring Networking 
+
+### Basic/Essential Tools 
 
 * Redirection
     * > (same as 1>)
@@ -48,7 +59,7 @@
     * info (pinfo)
     * /user/share/doc
 
-## Essential File Management Tools 
+### Essential File Management Tools 
 
 * FHS (Filesystem Hierarchy Standard)
     * man 7 file-hierarchy
@@ -170,7 +181,7 @@
         * C (change the output dir of the command)
         * r (appends files to an archive)
 
-## Working with text files 
+### Working with text files 
 
 * Essential tools for managing text content 
     * less (opens the file in a page)
@@ -237,7 +248,7 @@
     * sed -i -e '2d' ~/file (delete a line based on specific line number)
     * sed -i -e '2d;20,25d' ~/file (delete lines 2 and 20-25 in file)
 
-## Connecting to RHEL 9
+### Connecting to RHEL 9
 
 * Working on a local console 
     * Console (the env the user is looking at)
@@ -362,7 +373,7 @@
     * public key 
     * private key 
 
-## User and Group Management 
+### User and Group Management 
 
 * Following topics are covered:
     * Understanding different user types 
@@ -436,6 +447,59 @@
         * GOOD TO KNOW pkexec command tho 
         * pkexec (command as an alt to sudo in case you ever completely lose sudo access to a system)
 * Creating and managing user accounts 
-    * System accounts and normal accounts 
+    * System accounts and normal accounts
+        * Typically two types of user accounts 
+        * normal user accounts for people who need to work on a serer and who need limited access to the resouces on that server 
+            * Typically authed thru a password 
+        * System accounts that are used by services the server is offering
+        * Both type of accounts share common properties (which are kept in the files /etc/passwd and /etc/shadow)
+        * Fields are separated from each other by a colon 
+    * Breaking down /etc/passwd fields 
+        * Username 
+            * Unique name for each user 
+            * Important to match a user to pw (passwords stored in /etc/shadow)
+            * No spaces in a username 
+            * General convention to use lowercase letters 
+        * Password 
+            * Old days the hash password was stored here 
+            * Now stored in /etc/shadow 
+        * UID 
+            * Each user has a unique ID (UID)
+            * Numeric ID 
+            * UID really determines what a user can do 
+            * When permissions are set for a user, the UID (not the username) is stored in the file metadata
+            * UID 0 is reserved for root 
+            * Lower UIDs (typically up to 999) are used for system accounts
+            * Higher UIDs (from 1000 on by default) are reserved for people who need to connect a dir to the server 
+            * Range of UIDs that are used to create regular accounts is set in /etc/login.defs 
+        * GID 
+            * Each user is a member of at least one group 
+            * This group is the primary group 
+            * This group plays a central role in permission management 
+            * Users can be members of additional groups which are admin'd in the file /etc/group
+        * Comment Field 
+            * IS OPTIONAL 
+            * Used to add comments for user accounts 
+            * GECOS field (General Electric Comprehensive Operating System)
+        * Directory 
+            * Initial dir that user is placed in after logging in
+            * Also referred to as the home dir 
+            * Used to store personal files and programs (if used by a person/normal user)
+            * For a system user account, this is the env where the service can store files it needs while operating 
+        * Shell 
+            * Program that is started after the user successfully connects to a server 
+            * /bin/bash (default linux shell)
+            * For system user accounts, it will typically be a shell like /sbin/nologin
+            * /sbin/nologin denies access to the user (silently)
+            * Ensures that if an intruder logs into the server they cannot get any shell access
+            * Optionally, can create an /etc/nologin.txt file 
+            * In which case only root will be able to log in but other users will see the contents of this file when their logins are denied)
+    * A part of the user properties are stored in /etc/passwd
+    * Another part of the config is stored in /etc/shadow 
+        * Set properties of the password
+        * Only root and processes running as root have access to /etc/shadow
+    * Fields from the /etc/shadow file 
+        * left off line 1965
+           
 
 

@@ -499,7 +499,37 @@
         * Set properties of the password
         * Only root and processes running as root have access to /etc/shadow
     * Fields from the /etc/shadow file 
-        * left off line 1965
+        * Login name 
+            * /etc/shadow does not contain any UIDs (username only)
+            * Opens up the possibility for multiple users using the same UID but different password (not recommended)
+        * Encrypted password 
+            * Contains all that is needed to store the password in a secure way 
+            * If empty no password is set (user cannot login)
+            * If the field starts with an ! login is current disabled
+        * Days Since Jan 1, 1970 that the password was lasted changed (epoch)
+        * Days before password maybe changed 
+            * Allows system admins to use stricter password policy 
+            * Typically this field is set to the value 0
+        * Days after which password must be changed 
+            * Max validity period of password 
+            * 99,999 (274 years) is the default 
+        * Days before password is to expire that user is warned 
+            * Warn a user a forced password change is upcoming 
+            * 7 days (default)
+        * Days after password expires that account is disabled 
+            * Enforce a password change 
+            * After expiration of the pw, user can no longer log in
+            * After account reaches max validity period, acocunt is locked 
+            * Allows for a grace period in which the user can change their passwrod but only during login process 
+            * Set in days, unset by default 
+        * Days since Jan. 1 1970 that account is disabled 
+            * Admin can disable an account on a specific date 
+            * No default value 
+        * A reserved field, which was once added "for future use"
+        * Most of the password properties can be managed with the passwd or chage command 
+    * Creating Users 
+        * line 2000
+     
            
 
 

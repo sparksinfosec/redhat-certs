@@ -528,7 +528,21 @@
         * A reserved field, which was once added "for future use"
         * Most of the password properties can be managed with the passwd or chage command 
     * Creating Users 
-        * line 2000
+        * You can edit the contents of /etc/passwd and /etc/shadow
+        * vipw (risk making an error that makes logging in impossible to anyone)
+        * useradd (utility that you should use for creating users)
+        * userdel (to remove users)
+        * userdel -r (remove a user and the complete user env)
+    * Modifying the config files 
+        * Not recommended 
+        * Errors can mess up login and locking problems if multiple admins are trying to modify at the same time 
+        * vipw (open an editor interface on your config file)
+        * Does not check syntax 
+        * vipw -s (for /etc/shadow file)
+        * vigr (edit contents of /etc/group)
+        * Good to know, but useradd and groupmod are better options 
+    * Using useradd
+        * left off line 2024
      
            
 

@@ -542,7 +542,14 @@
         * vigr (edit contents of /etc/group)
         * Good to know, but useradd and groupmod are better options 
     * Using useradd
-        * left off line 2024
+        * useradd (probably most common tool for adding users)
+        * Ability to add a user account from the cmd by using many of its parameters
+        * useradd -m -u 1201 -G sales,ops linda (create a user named linda)
+            * Who is a member of the secondary group sales and ops 
+            * UID of 1201
+            * add a home dir to the user as well 
+    * Home directory 
+        * line 2031
      
            
 

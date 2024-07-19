@@ -556,7 +556,95 @@
         * /etc/skel (skeleton dir files are copied to user home dir when created)
         * Determine how the env is set up (also config files)
     * Default Shell 
-        * line 2045
+        * Program that is started after successful login/auth (most regular users noramally have a default shell)
+        * /bin/bash (normally)
+        * System users should not have an interactive shell as the default shell
+        * /sbin/nologin (for most system users)
+        * useradd or usermod (-s option to set or change default shell)
+        * usermod -s 
+        * useradd -s 
+        * useradd caroline -s /sbin/nologin (user caroline will not be able to log in)
+    * Managing User Properties 
+        * cmd tool or work directly in the config file using vipw
+        * usermod (command for modifying user properties)
+        * Can be used to set all properties of users as stored in /etc/passwd and /etc/shadow
+        * One task it does not do well: SETTING PASSWORDS (usermod has an -p option)
+        * Just use passwd 
+    * Config files for user management defaults 
+        * useradd (some default values are assumed)
+        * These default values are set in two config files: /etc/login.defs and /etc/default/useradd 
+    * Some significant properties that can be set from /etc/login.defs
+        * MOTD_FILE:
+            * Defines the file that is used as the message of the day file 
+        * ENV_PATH:
+            * Defines the $PATH variable (list of dirs that should be searched for exe files after logging in
+        * PASS_MAX_DAYS, PASS_MIN_DAYS, and PASS_WARN_AGE:
+            * Defines the default password expiration properties when creating new users 
+        * UID_MIN:
+            * Indicates the first UID to use when creating new users 
+        * CREATE_HOME:
+            * Indicates whether or not to create a home dir for new users 
+    * Managing password properties 
+        * Two commands to change password properties for users (/etc/shadow): chage and passwd 
+        * passwd -n 30 -w 3 -x 90 linda (set the pw for linda to a minimal usage period of 30 days)
+            * an expiry after 90 days 
+            * Warning generated 3 days before expiry 
+        * Many tasks using passwd can be done with chage also 
+        * chage -E 2025-12-31 bob (have account for user bob expire Dec 31 2025)
+        * chage -l (see current password management settings)
+        * chage has a interactive mode 
+        * chage anna (prompt for all the password properties you can set interactively)
+    * Creating a user ENV 
+        * When a user logs in, an env is created 
+        * ENV consists of variables that determine how the user is working (such as $PATH)
+        * To construct the user env a few files play a role 
+            * /etc/profile (Used for default settings for all users when starting a login shell)
+            * /etc/bashrc (Used to define default settings for all users when starting a login shell)
+            * ~/.profile (Specific settings for one user applied when starting a login shell)
+            * ~/.bashrc (Specific settings for one user applied when starting a subshell)
+        * When user log in files are read in this order
+        * Variables and other settings that are defined iin these files are applied 
+        * If variables are set in more than one file, last one wins 
+* Creating and Managing group accounts 
+    * Every user has to be a member of at least one group 
+    * Understanding Linux Groups 
+        * Two different kind of groups 
+        * Primary Group 
+            * Every user must be a member of a primary group, and a user has only one primary group 
+        * User creates a file, the user's primary group becomes the group owner of the file 
+        * User can also access all files their primary group has access to 
+        * Primary group membership defined in /etc/passwd 
+        * Group itself is stored in /etc/group 
+        * Users can be a member of one or more SECONDARY GROUPS as well 
+        * Secondary groups are important to get access to files 
+        * Secondary groups are important (for file access)
+        * Especially in regards to File servers (allow people working for different departments to share files with one another)
+        * Secondary group membership can be used to enable user admin privileges thru sudo also (making user a member of group wheel)
+    * Creating Groups 
+        * vigr (modify group config file directly)
+        * groupadd (command line utility)
+    * Creating groups with vigr
+        * vigr (open an editor interface directly on the /etc/group config file)
+        * /etc/groups (there is also /etc/gshadow file)
+        * Hardly used any more but store group passwords
+        * Some cool features 
+        * In the third field of this file you can list admins
+        * Comma separated list of users who can change passwd for group members
+        * NOTE that specifying group members here is optional 
+            * But if it is done, group member names must be the same as the group members in /etc/group
+    * Fields used in /etc/group 
+        * Group Name (Contains the name of the group)
+        * Group Password (Hardly used anymore field contain a group password)
+            * Group password can be used by users who want to join the group on a tmp basis
+            * Access to files the group has access is allowed (with password/if group password is used)
+            * Stored in /etc/gshadow file (only accessible by root)
+        * Group ID (field contains a uniq numeric group ID number)
+        * Members (Find the names of users who are a member of the group as a SECONDARY GROUP)
+            * DOES NOT show users who are a member of this group as their primary group 
+    * Using groupadd to create groups 
+        * line 2172
+            
+
      
            
 

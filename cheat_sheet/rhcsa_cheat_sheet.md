@@ -549,7 +549,14 @@
             * UID of 1201
             * add a home dir to the user as well 
     * Home directory 
-        * line 2031
+        * All normal users will have a home dir (store personal files)
+        * System accounts the home dir often contains the working env for the service account 
+        * Likely not required to change home dir settings related to system accounts
+        * Created automatically from RPM post installation scripts when installing software packages
+        * /etc/skel (skeleton dir files are copied to user home dir when created)
+        * Determine how the env is set up (also config files)
+    * Default Shell 
+        * line 2045
      
            
 

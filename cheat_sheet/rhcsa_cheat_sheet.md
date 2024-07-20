@@ -642,7 +642,24 @@
         * Members (Find the names of users who are a member of the group as a SECONDARY GROUP)
             * DOES NOT show users who are a member of this group as their primary group 
     * Using groupadd to create groups 
-        * line 2172
+        * groupadd (followed by name of the group you want to add)
+        * -g (allows you to specify a group ID when creating the group)
+    * Managing group properties 
+        * groupmod (manage group properties)
+        * Change the name or group ID of a group (can not add group members)
+        * NOTE: may be a bad idea to change these properties (can impact group owned files that already exist)
+        * usermod (usermod -aG (add users to new SECONDARY group))
+        * Common that group properties are managed directly in /etc/group (vigr command)
+        * lid (to see which users are a member of a group 
+        * lid -g sales (check which users are a member of the sales group)
+    * NOTE group membership are defined in two different locations so can be difficult to file which members belong to which groups 
+        * groupmems (a way to check this)
+        * groupmems -g sales -l (see which users are a member of sales group)
+        * Secondary group and primary group assignments
+
+### Permission Management 
+
+* 
             
 
      

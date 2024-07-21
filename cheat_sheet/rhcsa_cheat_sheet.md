@@ -678,7 +678,27 @@
 * Managing file ownership
     * File and dir ownership are vital for working with permissions
     * Displaying ownership
-        * line 2263
+        * Two owners for every file and dir (user owner and group owner)
+        * ls -l (shows the user, group, and other listing (ugo))
+        * Owners are set when a file or dir is created 
+        * On creation the user who created the file becomes the user owner
+        * Primary group of that user becomes the group owner
+        * Shell checks ownership (to determine whether you as a user have permission to a file or dir)
+        * Checks ownership in following order 
+            1. Shell checks whether you are the user owner of the file you want to access (user of the file)
+            * If you are the user you get permission (based on user permission set) and the shell looks no further
+            1. If you are not the owner, shell checks if you are a member of the group owner 
+            * Group of the file 
+            * If you are a member you get access to the file based on group permission set (shell looks no further
+            1. If you are neither the user owner nor the group owner 
+            * And have not obtained permissions thru ACLs 
+            * You get the permissions of the other entity
+        * find -user (can get a list of all files on the system that have a given user or group as the owner)
+        * find / -user linda 
+        * find / -group users 
+    * Change user ownership 
+        * left off 2294
+            
             
 
      

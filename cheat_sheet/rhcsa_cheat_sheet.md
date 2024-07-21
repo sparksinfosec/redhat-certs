@@ -659,7 +659,26 @@
 
 ### Permission Management 
 
-* 
+* Following topics are covered in this chapter 
+    * Managing file ownership 
+    * Managing basic permissions
+    * Managing advanced permissions 
+    * Setting default permissions with umask 
+    * Working with user extended attributes 
+* Following RHCSA exam objectives are covered in this chapter 
+    * Manage default permissions 
+    * List, set, and change standard ugo/rwx permissions 
+    * Create and config set-GID dirs for collaboration
+    * Diagnose and correct file permission problems 
+* Permission management 
+    * Permissions are assigned to three entities (permissions are used to get access to files)
+        * File owner
+        * Group owner
+        * Other entity 
+* Managing file ownership
+    * File and dir ownership are vital for working with permissions
+    * Displaying ownership
+        * line 2263
             
 
      

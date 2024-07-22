@@ -697,7 +697,9 @@
         * find / -user linda 
         * find / -group users 
     * Change user ownership 
-        * left off 2294
+        * chown (command too apply apropriate permissions, 1st thing to consider is ownership)
+        * chown who what
+        * line 2297
             
             
 

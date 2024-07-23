@@ -699,7 +699,53 @@
     * Change user ownership 
         * chown (command too apply apropriate permissions, 1st thing to consider is ownership)
         * chown who what
-        * line 2297
+        * chown linda files (changes the ownership of the file files to user linda)
+        * chown -R (set ownership recursively)
+        * -R (set ownership of the current dir and everything below it)
+        * chown -R linda /files (change ownership of the dir /files and everything beneath it to user linda)
+    * Changing group ownership 
+        * chown and chgrp
+        * chown uses a . or : in front of the group name 
+        * chown .account /home/account (change the group owner of the dir /home/account to the account group)
+        * chown can be used to change user and/or group ownership in a number of ways 
+            * chown lisa myfile (set user lisa as the owner of myfile)
+            * chown lisa.sales myfile (set user lisa as user owner and group sales as group owner of myfile)
+            * chown lisa:sales myfile (set user lisa as user owner and group sales as group owner of myfile)
+            * chown .sales myfile (set group sales as group owner of myfile without changing the user owner)
+            * chown :sales myfile (set group sales as group owner of myfile without changing the user owner)
+        * chgrp account /home/account (set group ownership of the dir /home account to the group account)
+    * Understanding default ownership 
+        * When a user creates a file, default ownership is applied 
+        * User who creates the file automatically becomes user owner 
+        * Primary group of that user automatically becomes group owner 
+        * user can use newgrp command to change the effective primary groups so that new files will get the new primary group as group owner
+        * group (command to show the current primary group)
+            * primary group is the first name listed after the : character
+        * groups lisa
+        * newgrp will open a new shell in which the new temporary primary group is set 
+        * Will continue to be used as the effective primary group until the exit command is used 
+        * To be able to use the newgrp command a user has to be a member of that group 
+        * gpasswd can be used for a group password (but this is uncommon)
+        If a user uses newgrp but is not a member of the group prompted for group passwd 
+* Managing Basic Permissions 
+    * Understanding read, write, and execute permissions 
+        * Three basic permissions allow users read, write, and execute 
+        * Effects differ when applied to files or dirs 
+        * lines 2338-2362 part 1 goes over some indepth read write and execute info
+        * Read
+            * applied to files (view file contents)
+            * applied to dirs (list content of dir)
+        * Write 
+            * applied to files (change content of file)
+            * applied to dir (create and delete files and subdirs)
+        * Execute 
+            * applied to files (run a program)
+            * applied to dirs (change to the dir)
+            * Important for dirs (normally default to dirs)
+            * execute never set automatically to files (user owner and root need to apply)
+    * Applying read, write, and execute permissions 
+        * chmod (command to apply permissions)
+
             
             
 

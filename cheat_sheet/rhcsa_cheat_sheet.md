@@ -745,7 +745,28 @@
             * execute never set automatically to files (user owner and root need to apply)
     * Applying read, write, and execute permissions 
         * chmod (command to apply permissions)
-
+        * Chmod can set permissions for user, group, or other
+        * Relative and absolute mode
+        * Absolute mode three digits are used to set permissions (Read (4), Write (2), and Execute (1))
+        * chmod 755 /somefile (rwx for user, rx for group, rx for other)
+        * Absolute mode will replace current permissions
+        * Relative mode works with three indicators to specify what you want to do
+            * First specify for whom you want to change permissions
+            * u (user), g (group), o (other), a (all)
+            * Then you can add or remove permission from the current mode
+            * Or set them in a absolute way 
+            * Using r, w, and x to specify what permissions you want to set 
+            * Omit the to whom part to add or remove a permission for all entities
+        * chmod +x somefile (execute permission for all entities)
+        * chmod g+w,o+r somefile (add write permissions to group and remove read from others)
+        * Recursive mode needs special attention
+        * If you want to apply execute permission in a recursive way you should apply it as X, not x 
+        * chmod -R a+x files (instead use chmod -R a+X files)
+* Managing Advanced Permissions 
+    * Three advanced permissions
+    * Set User ID (SUID)
+    * Set Group ID (SGID)
+    * Sticky Bit
             
             
 

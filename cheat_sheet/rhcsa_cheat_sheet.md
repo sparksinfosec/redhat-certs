@@ -765,8 +765,18 @@
 * Managing Advanced Permissions 
     * Three advanced permissions
     * Set User ID (SUID)
+        * ls -l (see SUID permission as an s at the execute (x) for user permissions)
     * Set Group ID (SGID)
+        * shows as an s at the position where you normally find the group execute permission
+        * Lowercase s indicates both SGID and execute are set 
+        * Uppercase S means only SGID is set 
     * Sticky Bit
+        * Shows as T at the position where you normally see execute permission for others 
+        * Lowercase t indicates that sticky bit + execute permissions for the other entity are set 
+        * Uppercase T indicates that only sticky bit is set 
+    * RHCSA objectives specifically mentions being able to use SGID to create a shared group dir 
+* Applying Advanced Permissions 
+    * 
             
             
 

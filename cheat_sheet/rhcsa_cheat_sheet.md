@@ -776,6 +776,134 @@
         * Uppercase T indicates that only sticky bit is set 
     * RHCSA objectives specifically mentions being able to use SGID to create a shared group dir 
 * Applying Advanced Permissions 
+    * chmod (to apply SUID, SGID, and sticky bit)
+    * SUID has a numeric value of 4
+    * SGID has a numeric value of 2 
+    * Sticky bit has a numeric value of 1 
+    * Need to add a four digit arg to chmod 
+    * First digit refers to the special permissions 
+    * chmod 2755 /somedir (add SGID permission to a dir and set rwx for user, rx for group and other)
+        * Impractical as you have to look up current permission (risk overwriting permissions)
+    * Recommend working in relative mode if you need to apply any of the special permissions 
+        * chmod u+s (for SUID)
+        * chmod g+s (for SGID)
+        * chmod +t (for sticky bit)
+* Working with SUID, SGID, and Sticky Bit 
+    * SUID 
+        * 4 (numeric value) 
+        * u+s (relative value)
+        * User executes file with permissions of file owner
+        * No means for dirs 
+    * SGID 
+        * 2 (numeric value)
+        * g+s (relative value)
+        * User executes file with permissions of group owner (on files)
+        * Files created in dir get the same group owner (on dirs)
+    * Sticky Bit
+        * 1 (numeric value)
+        * +t (reltaive value)
+        * No meaning on files
+        * Prevents users from deleting files from other users (on dirs)
+* Setting default permissions with umask 
+    * To set default permissions you use either file ACLs or umask 
+    * Umask settings determine default permissions for new files 
+    * This shell setting is applied to all users when logging in to the system 
+    * Numeric value used to subtract from the max permissions that can be set automatically to a file 
+    * Max setting for files is 666
+    * Max setting for dirs is 777
+    * First digit is user, second is group, third is other
+    * Default umask setting of 022 gives 644 to all new files, and 755 to all new dirs 
+    * Umask values and their results 
+        * 0 
+            * Applies rw to files 
+            * Everythin to dirs
+        * 1 
+            * rw to files 
+            * rw to dirs 
+        * 2
+            * r to files 
+            * rw to dirs 
+        * 3 
+            * r to files 
+            * r to dirs
+        * 4
+            * w to files 
+            * wx to dirs 
+        * 5 
+            * w to files 
+            * w to dirs 
+        * 6 
+            * Nothing to files 
+            * x to dirs 
+        * 7 
+            * Nothing to files 
+            * Nothing to dirs 
+    * Two ways to change umask settings
+        * For all users 
+        * For individual users 
+    * /etc/profile 
+    * Create a script in /etc/profile.d dir and specify the umask you want to use in that shell script
+        * If the umask is changed in this file it applies to all users after logging in to your server 
+    * Change umask settings in a file with the name .profile 
+        * Home dir of an individual user
+        * Applied to individual user only 
+* Working with user extended attributes 
+    * An alt method of securing files on a linux server is by working with attributes 
+    * Most useful attributes that you can apply 
+        * A 
+            * Ensures that the file access time of the file is not modified
+            * Normally every time a file is opened the file access time must be written to the files metadata
+            * Can impact performance in a negative way 
+            * Can be disabled for files that are accessed on a regular basis
+        * a 
+            * Allows a file to be added to but not to be removed 
+        * c 
+            * If a file system where volume level compression is supported 
+            * Will make sure the file is compressed the first time compression engine becomes active 
+        * D 
+            * Changes to files are written to disk immediately and not to cache first 
+            * Useful attribute on important database files to make sure that they do not get lost between file cache and hard disk 
+        * d 
+            * Makes sure the file is not backed up where the legacy dump utility is used 
+        * I 
+            * Enables indexing for the dir where it is enabled 
+        * i
+            * Makes file immutable (therefore no changes can be made to the file at all)
+        * s 
+            * Overwrites the blocks where the file was stored with 0s after the file has been deleted
+        * u 
+            * Saves undeleted information
+            * Allows a utility to be developed that works with that information to salvage deleted files 
+    * Most attributes are rather experimental 
+    * Only of any use if an application is used that can work with the given attribute 
+    * chattr (command to apply attributes)
+    * chattr +s somefile (to apply the attributes to somefile)
+    * chattr -s somefile (remove the attribute)
+    * Test out to find how attributes are one of the rare cases where you can block access to the root user
+    * lsattr (overview of all attributes that are currently applied)
+* Summary 
+    * Work with permissions 
+    * Basic permissions as well as advanced permissions
+    * umask 
+    * User extended attributes (to apply an additional level of file system security)
+* Define Key Terms 
+    * Ownership 
+    * Permissions
+    * Inheritance 
+    * Attribute 
+
+### Configuring Networking 
+
+* The Following Topics are covered in this Chapter 
+    * Networking fundamentals 
+    * Managing network address and ints 
+    * Validating network configs 
+    * Managing network config with nmtui and nmcli
+    * Setting up hostname and name resolution
+* The following RHCSA exam objectives are covered in this chapter
+    * Config IPv4 and IPv6 Addresses
+    * Config hostname resolution
+* Configuring networking 
     * 
             
             

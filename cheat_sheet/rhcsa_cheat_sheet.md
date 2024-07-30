@@ -909,7 +909,23 @@
     * IPv4 (32 bit addresses 4 octets separated by dots)
     * IPv6 (128 bit addresses and are written in 8 groups of hexadecimal 16 bits each separated by colons)
     * IP addresses 
-        * line 2682
+        * Node (also might encounter the word host)
+        * A host is typically a server providing services on the network 
+        * For ease of communication every IP address belongs to a specific network 
+        * Routers are used to communicate with computers across networks 
+        * Router connects networks to one another 
+        * Private network addresses (addresses that are for use in internel networks only)
+        * Some IP network addresses have been reserved for this purpose 
+            * 10.0.0.0/8 (Single class A network)
+            * 172.16.0.0/12 (16 Class B networks)
+            * 192.168.0.0/16 (256 Class C Networks)
+        * Private address nodes cannot access the internet directly 
+        * NAT (Network address translation)
+            * NAT router in and out not interacting with individual hosts 
+            * NAT router tracks tables of all connections that currently exist for host on the network 
+            * NAT router helps make it possible for comps with a private IP address to connect to the internet
+    * IPv6 Addresses
+        * slide 2705
             
             
 

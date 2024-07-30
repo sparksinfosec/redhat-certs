@@ -903,8 +903,13 @@
 * The following RHCSA exam objectives are covered in this chapter
     * Config IPv4 and IPv6 Addresses
     * Config hostname resolution
-* Configuring networking 
-    * 
+* Networking Fundamentals 
+    * To set up networking on a server, your server needs a unique address on the network 
+    * IP (internet protocol) address are used 
+    * IPv4 (32 bit addresses 4 octets separated by dots)
+    * IPv6 (128 bit addresses and are written in 8 groups of hexadecimal 16 bits each separated by colons)
+    * IP addresses 
+        * line 2682
             
             
 

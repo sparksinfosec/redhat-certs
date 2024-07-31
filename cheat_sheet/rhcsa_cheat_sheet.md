@@ -925,7 +925,41 @@
             * NAT router tracks tables of all connections that currently exist for host on the network 
             * NAT router helps make it possible for comps with a private IP address to connect to the internet
     * IPv6 Addresses
-        * slide 2705
+        * Can replace one range of zeros with ::
+        * Leading zeros can be omitted
+        * 02fb:0000:0000:0000:90ff:fe23:8998:1234
+        * 2fb::90ff:fe23:8998:1234
+    * IPv4 network masks 
+        * Subnet mask defines which part of the network address indicates the network and what part indicates the node
+        * Classless Inter-Domain Routing (CIDR) notion
+        * Classical notation
+        * They always need to be specified with the network address 
+        * 192.168.10.100/24 (CIDR Notation - 24 bit network address is used)
+        * 192.168.10.100/255.255.255.0 (Classical notation - same as above)
+        * Often network masks use multiple bytes 
+        * 192.168.10.100/24
+            * First 3 bytes (192.168.10) are the network part
+            * Last byte (.100) is the host part of that network 
+        * 192.168.10.100/24 (Network address is 192.168.10.0)
+        * Broadcast address (address that can be used to address all nodes in the network)
+            * All node bits are set to 1 
+            * 192.168.10.100/24 (Broadcast address is 192.168.10.255)
+    * Binary Notation
+        * IPv4 address space is limited 
+        * As a result modern IPv4 networks use variable length network masks
+        * 219.209.113.33/27
+        * Only a part of the byte is used for addressing nodes 
+        * Another part is used for addressing the network
+        * /27 (last 3 bits of the last byte are used to address the network)
+            * Last 5 bits are used for addressing node (hosts)
+        * 212.209.113.33 = 11010100.11010001.00001010.00100001
+        * Subnet mask /27 = 11111111.11111111.11111111.11100000
+        * with a /27 30 nodes can be addressed per network 
+        * 32 IPs, 2 of them network address and broadcast address (30 useable hosts)
+    * MAC addresses 
+        * line 2747
+
+ 
             
             
 

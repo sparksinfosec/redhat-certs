@@ -957,7 +957,9 @@
         * with a /27 30 nodes can be addressed per network 
         * 32 IPs, 2 of them network address and broadcast address (30 useable hosts)
     * MAC addresses 
-        * line 2747
+        * IP addresses allow nodes to communicate to other nodes on the internet
+        * Each network card also has a 12 byte MAC address 
+        * MAC addresses are for use on the local network 
 
  
             

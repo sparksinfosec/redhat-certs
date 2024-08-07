@@ -960,6 +960,7 @@
         * IP addresses allow nodes to communicate to other nodes on the internet
         * Each network card also has a 12 byte MAC address 
         * MAC addresses are for use on the local network 
+        * Left off line 2751
 
  
             

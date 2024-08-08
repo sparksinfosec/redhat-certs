@@ -1034,7 +1034,50 @@
     * To manage network connections that you want to assign to devices, you use nmtui or the nmcli command 
     * nmcli tool is cool and very powerful but is not the easiest tool available 
         * To change network configs fast and efficiently you should use the menu drive nmtui utility??
-    * Line 2911 
+    * Required permissions to change network config 
+        * Root user can make modifications to current networking 
+        * Ordinary user logged into local console is able to make changes as well 
+        * As long as the user is using system keyboard to enter either a graphical console or a text based console these permissions are granted 
+        * Users are suppose to be able to connect their local system to a network 
+        * Regular users who use ssh to connect are not allowed to change the network config 
+        * nmcli general permissions (to check your current permissions)
+    * Configuring the network with nmcli 
+        * ip addr add (to temp set an IP address on a network interface)
+        * Everything you do with the ip command is nonpersistent
+        * nmtui and nmcli (if you want to make persistent changes to the config)
+        * nmcli (show all connections/shows inactive and active connections)
+        * nmcli con show 
+        * After finding the name of the connection you can use nmcli con show (followed by the name of the connection) to see all properties of the connection
+        * man 5 nm-settings (to find out additional information/exactly settings are doing)
+        * nmcli (show an overview of currently configd devices and the status of these devices)
+        * nmcli dev status (show a list of devices)
+        * nmcli dev show <devicename> (show settings for a specific device)
+        * TIP nmcli might seem difficult (make sure that bash-completion package is installed)
+            * nmcli (TAB x2 should see all available options that nmcli expects at this moment)
+        * nmcli con add 
+        * nmcli con mod (change current connection properties)
+        * Execellent man page (man nmcli-examples)
+            * If you can find this man page you can do almost anything with nmcli
+    * Configuring the network with nmtui 
+        * Text user interface that allows teh creation of network connections easily 
+        * nmtui interface consists of three menu options
+            * Edit a connection: create new or edit existing connection
+            * Activate a connection: (re)activate a connection
+            * Set system hostname: set the hostname of your computer 
+        * Edit a connection offers almost all features that you might need while working with n/w connections
+        * After editing the connection you need to deactivate it and activate it again
+    * Working with network config files 
+        * /etc/NetworkManager/system-connections
+            * Every connection that you create is stored as a config file in this dir 
+        * Name of the config files start with the name of the connection followed by .nmconnection
+        * Previous versions of RHEL network connection were stored in the /etc/sysconfig/network-scripts dir
+            * If NetworkManager finds legacy connection scripts in this dir, they will still be used
+            * But NetworkManager connection scripts are no longer stored by default at this location
+* Setting up hostname and name resolution
+    * To communicate with other host, hostnames are used (important to know as an admin)
+    * Important to make sure hosts can contact one another based on hostname (setting up hostname resolution)
+    * Hostnames 
+        * left off line 3005
 
  
             

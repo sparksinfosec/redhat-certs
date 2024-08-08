@@ -1010,7 +1010,31 @@
         * ip link show (if you are just interested in the link state of the network interfaces)
         * ip link show (repeats the link state info of the ip addr show command)
         * -s (option that will show current link statitics)
-        * left off line 2846
+    * Validating routing 
+        * Default gateway (every networks got one)
+        * ip route show (show which router is used as the default router)
+        * Default router at all times must be on the same network as the local IP address that your network card is using 
+    * Validating the availability of ports and services 
+        * netstat or newer ss command (verify availability of ports on your server)
+        * ss -lt (see all listening TCP ports on the local system)
+        * 127.0.0.1 or ::1 (loopback address for IPv4 and IPv6 means only listening locally)
+        * Other ports are listening on all (*) or :::* 
+* Managing network config with nmtui and nmcli 
+    * RHEL 9 is managed by the network manager service 
+    * systemctl status NetworkManager (to verify its current state)
+    * When network manager comes up it reads the network card config script 
+        * /etc/NetworkManager/systemconnections
+        * Has a name that starts with the name of the network interface the config applies to 
+        * Like ens160.nmconnection
+    * Should know the difference between a device and a connection
+        * A device is a network interface card
+        * A connection is the config that is used on a device 
+        * In RHEL 9 you can create multiple connections for a device 
+    * Switching between connections on devices is common on end user systems but not so common on servers 
+    * To manage network connections that you want to assign to devices, you use nmtui or the nmcli command 
+    * nmcli tool is cool and very powerful but is not the easiest tool available 
+        * To change network configs fast and efficiently you should use the menu drive nmtui utility??
+    * Line 2911 
 
  
             

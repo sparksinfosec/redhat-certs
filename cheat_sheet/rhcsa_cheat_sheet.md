@@ -960,7 +960,57 @@
         * IP addresses allow nodes to communicate to other nodes on the internet
         * Each network card also has a 12 byte MAC address 
         * MAC addresses are for use on the local network 
-        * Left off line 2751
+        * Not used for communication between nodes that are on different networks 
+        * Help map IP to physical network card
+        * 00:0c:29:7d:9b:17 (example mac address 
+        * First 6 bytes are the vendor ID/Second 6 bytes are the unique node ID 
+    * Protocol and ports 
+        * IP addresses to ID individual nodes (On these nodes you will typically be running services)
+        * Like web server or FTP server 
+        * Every service has a specific port address (To ID these services)
+        * port 80 for http, port 22 for ssh 
+        * In network communication the sender and reciever are using port addresses 
+        * Destination and source port address 
+        * Specific protocol is used between IP address and the port address
+        * TCP/UDP (or ICMP)
+* Managing network addresses and interfaces 
+    * Linux server admin need to manage network addresses and network interfaces 
+    * Network addresses can be assigned in two ways 
+        * Fixed and Dynamically assigned IP addresses
+    * For a long time network cards in linux have had default names such as eth0, eth1, and eth2 
+        * Naming assigned based on the order of detection of the network card 
+        * RHEL 9 default names for network cards are based on firmware, device topology, and device type
+    * Network card names always consist of the following parts
+        * Ethernet interfaces begin with an en 
+            * WLAN interfaces begin with wl 
+            * WWAN interfaces begin with ww
+        * The next part of the name represents the type of adapter 
+            * an o for onboard 
+            * s is for hotplug slot 
+            * p is for a PCI location
+            * Admins can also use x to create a device name that is based on the MAC address of the network card 
+        * Followed by a number, which is used to represent an index of, ID, or port 
+        * If the fixed name cannot be determined, traditional names such as eth0 are used 
+        * Based on this information device names such as eno16777734 can be used
+        * em1 (embedded network card 1)
+        * OR p4p1 (which is PCI slot 4, port 1)
+* Validating network config 
+    * Check the following network items 
+        * IP address and subnet mask 
+        * routing
+        * Availability of ports and services 
+    * Validating network address config 
+        * ip 
+        * ip addr (to config and monitor network addresses)
+        * ip route (to config and monitor routing information)
+        * ip link (to config and monitor network link state)
+        * ifconfig used in earlier linux versions
+        * ip addr show (show current network settings)
+        * 127.0.0.1 (loopback int used for communication between process/internal communication)
+        * ip link show (if you are just interested in the link state of the network interfaces)
+        * ip link show (repeats the link state info of the ip addr show command)
+        * -s (option that will show current link statitics)
+        * left off line 2846
 
  
             

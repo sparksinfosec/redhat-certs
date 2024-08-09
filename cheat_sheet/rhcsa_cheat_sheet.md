@@ -1105,12 +1105,41 @@
             * In this case the second column must contain the FQDN and 3rd column can contain the alias 
     * DNS name resolution 
         * Just using a /etc/hosts is not enought for name resolution (if you want to communicate with other hosts on the internet 
-        * SHould use DNS too
+        * Should use DNS too
         * Specify which DNS server should be used (set the DNS server using nmcli or nmtui)
         * NetworkManager config stores the DNS information in the config file for the network connection
             * /etc/sysconfig/network-scripts 
             * From there pushes the config to /etc/resolv.conf file 
             * Which is used for DNS name server resolving 
+            * Do not edit /etc/resolv.conf directly (will be overwritten next time you restart NetworkManager)
+            * Recommended to always set up at least two DNS name servers (first does not answer, second is contacted)
+        * Few different options to specify which DNS server you want to use
+            * nmtui to set DNS name server
+            * Use a DHCP server that is configd to hand out address of the DNS name server 
+            * nmcli con mod <connection-id> [+]ipv4.dns <ip-of-dns>
+        * Notice that if your comp is configed to get the network config from a DHCP server, the DNS server is also set via DHCP server 
+            * nmcli con mod <con-name> ipv4.ignore-auto-dns yes (if you do not want this to happen)
+            * getent hosts <servername> (to verify hostname resolution)
+            * This command searches in both /etc/hosts and DNS to resolve the hostname that has been specified
+* Define key terms 
+    * IP (internet protocol)
+    * IPv4
+    * IPv6
+    * Subnet mask
+    * port
+    * protocol
+    * interface
+    * Dynamic Host configuration protocol (DHCP)
+    * Connection
+    * Domain Name System (DNS)
+    * Fully qualified domain name (FQDN)
+
+## Part 2 Operating Running Systems 
+
+### Managing Software 
+
+* no line all caught up (start of part 2)
+
 
  
             

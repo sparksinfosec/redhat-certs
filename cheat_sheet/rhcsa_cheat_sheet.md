@@ -1077,7 +1077,40 @@
     * To communicate with other host, hostnames are used (important to know as an admin)
     * Important to make sure hosts can contact one another based on hostname (setting up hostname resolution)
     * Hostnames 
-        * left off line 3005
+        * Important to know how to set up hostname (used to access servers and the services they offer)
+        * Two parts that make up a fully qualified domain name (FQDN)
+        * server1.example.com (for example good practice to specify the FQDN not just the hostname)
+        * FQDN provides a unique identity on the internet 
+        * There are different ways to change the hostname 
+            * Use nmtui and select the option to change hostname 
+            * hostnamectl set-hostname
+            * edit the content of the config file /etc/hostname 
+        * Config hostname with hostnamectl 
+            * hostnamectl set-hostname myhost.example.com 
+            * hostnamectl status (show the current hostname)
+            * hostnamectl status (not only information about the hostname, linux kernel, virt type and more)
+        * To set hostname resolution typically use DNS (config a DNS server is not a RHCSA objective)
+        * But need to know how to config your server to use an existing DNS server for hostname resolution
+        * Apart from DNS, you can config hostname resolution in /etc/hosts file 
+        * cat /etc/hosts
+        * All hostname IP address definitions as set in /etc/hosts will be applied b4 the hostname in DNS is used 
+        * This is configed as default in the hosts line in /etc/nsswitch.conf 
+            * Which by default looks like: hosts: files dns myhostname 
+        * Setting up a etc/hosts file is easy 
+            * Just make sure it contains at least two columns 
+            * First column has the IP address ofthe specific host
+            * Second column specifies the hostname 
+            * Hostname can be provided as a short name (like server1) or a FQDN 
+            * Can also specify both in /etc/hosts
+            * In this case the second column must contain the FQDN and 3rd column can contain the alias 
+    * DNS name resolution 
+        * Just using a /etc/hosts is not enought for name resolution (if you want to communicate with other hosts on the internet 
+        * SHould use DNS too
+        * Specify which DNS server should be used (set the DNS server using nmcli or nmtui)
+        * NetworkManager config stores the DNS information in the config file for the network connection
+            * /etc/sysconfig/network-scripts 
+            * From there pushes the config to /etc/resolv.conf file 
+            * Which is used for DNS name server resolving 
 
  
             

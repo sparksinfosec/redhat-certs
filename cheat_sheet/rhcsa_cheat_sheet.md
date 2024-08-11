@@ -1138,7 +1138,17 @@
 
 ### Managing Software 
 
-* no line all caught up (start of part 2)
+* The following topics are covered in this chapter
+    * Managing software packages with dnf
+    * Using dnf
+    * Managing package modules
+    * Managing software packages with rpm
+* The Following RHCSA exam objectives are covered in this chapter
+    * Install and update software packages from red hat network 
+    * Remote repo 
+    * Or local file system 
+* Managing Software 
+    * 
 
 
  

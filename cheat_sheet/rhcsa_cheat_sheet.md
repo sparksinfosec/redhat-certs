@@ -1148,6 +1148,7 @@
     * Remote repo 
     * Or local file system 
 * Managing Software 
+* Managing software packages with dnf 
     * 
 
 

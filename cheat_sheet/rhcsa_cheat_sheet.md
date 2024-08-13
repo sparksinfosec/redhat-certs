@@ -1149,7 +1149,12 @@
     * Or local file system 
 * Managing Software 
 * Managing software packages with dnf 
-    * 
+    * dnf (the default utility used to manage software packages on RHEL)
+    * dnf is designed to work with repos (repos are online depots of available software packages)
+    * Learn how to create and manage repos (How to manage software packages based on the content of the repos)
+    * Understanding the role of repositories 
+        * S/W on RHEL is provided in the Red Hat Package Manager (RPM) format
+        * line 32 part 2
 
 
  

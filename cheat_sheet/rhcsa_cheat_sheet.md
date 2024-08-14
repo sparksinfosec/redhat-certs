@@ -1154,7 +1154,8 @@
     * Learn how to create and manage repos (How to manage software packages based on the content of the repos)
     * Understanding the role of repositories 
         * S/W on RHEL is provided in the Red Hat Package Manager (RPM) format
-        * line 32 part 2
+        * Repos play a key role in working with software (working with repos make it easy to keep your server current)
+        * line 35
 
 
  

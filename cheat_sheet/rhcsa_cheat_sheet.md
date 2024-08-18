@@ -1155,7 +1155,42 @@
     * Understanding the role of repositories 
         * S/W on RHEL is provided in the Red Hat Package Manager (RPM) format
         * Repos play a key role in working with software (working with repos make it easy to keep your server current)
-        * line 35
+        * Whenever you use the dnf command to install software (the most recent version is automatically used)
+        * Also another major benefit is package dependencies with dnf
+        * Without repos packages would have to be installed manually (repo resolves dependencies automatically)
+        * If you are using RHEL with the repos provided for registered installations
+            * There is no reason why procedure should not work 
+            * The attempts to install software will usually succeed
+        * While installing RHEL 9, you are asked to register with RH customer portal
+            * Provides different repos (after registering, installed s/w packages verified by RH automatically)
+            * Choose to not register (cannot get in touch with RH repos)
+            * Need to be able to config repo client to specify yourself which repo you want to use
+        * Repos are specific to OSs
+        * EPEL (Extra package for enterprise linux) repo 
+            * Not recommended
+            * Provide additional software from Fedora project to RHEL server (for example)
+    * Registering Red Hat Enterprise Linux for support 
+        * RH support > Register > Entitlement 
+        * Entitlement is assocaited to your account on RH customer portal (obtained thru purchase of a sub from RH)
+        * Or by joing RH developer program (16 max install of RHEL systems)
+        * No support, but updates and access to RH repos (developers.redhat.com)
+        * RHSM (RH subscription management) tool to manage your entitlement
+        * Managing an entitlement involves 4 basic tasks
+            * Register, Subscribe, Enable, Review and Track (lines 76 - 84 part 2 cert guide)
+    * Managing Subscriptions 
+        * Manage subs either from GNOME GUI or command line 
+        * subscription-manager (tool used for managing from the CLI)
+        * subscription-manager register (to register, will prompt for name of your RH user account + passwd)
+        * subscription-manager list --available (list available subscriptions, see what your account is entitled to)
+        * subscription-manager attach --auto (automatically attach a subscription)
+        * subscription-manager list --consumed (get an overview to see which subs are being used)
+        * subscription-manager unregister (unregister, deprovision a system)
+        * After you register and attach a subscription, entitlement certs are written to /etc/pki dir
+        * /etc/pki/product (stored certs for which RH products are installated on this system)
+        * /etc/pki/consumer (stored cert ID the RH account to which the system is registered)
+        * /etc/pki/entitlement (contains information about the sub that are attach to this system)
+    * Specifying which repo to use
+        * line 106 part 2 
 
 
  

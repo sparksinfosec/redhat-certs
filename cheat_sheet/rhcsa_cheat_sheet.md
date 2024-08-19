@@ -1190,7 +1190,39 @@
         * /etc/pki/consumer (stored cert ID the RH account to which the system is registered)
         * /etc/pki/entitlement (contains information about the sub that are attach to this system)
     * Specifying which repo to use
-        * line 106 part 2 
+        * After install it is configd with a list of repos that should be used 
+        * Sometimes have to tell your server which repo should be used for example:
+            * You want to distribute nondefault software packages through repos
+            * You are installing RHEL without registering it 
+        * Telling your server which repo to use is no difficult but is important to know 
+        * Tell your server which repo to use (create a file with a name that ends in .repo in the dir /etc/ump.repo.d)
+        * Following paraemters are commonly used 
+            * [label] (the .repo file can contain different repos, each section starting with a label that IDs the specific repo)
+            * name= (Use this to specify the repo you want to use)
+            * baseurl= (this option contains the URL that points to the specific repo location)
+            * gpgcheck= (This option specifies if a GNU privacy guard (GPG) key validity check should be used to verify that packages have not been tampered with)
+        * RHEL 9 dnf config-manager tool (Older versions required memorization to create repo client files)
+        * dnf config-manager --add-repo=http://reposerver.example.com/BaseOS (easily generate repo client file)
+        * dnf config-manager --add-repo=file:///repo/BaseOS 
+        * Need to edit the repo file in /etc/yump.conf.d after adding it (including gpgcheck=0)
+            * Without this option the dnf tool wants to do GPG checks on incoming packages, which requires additional complex config that is not needed for the exam)
+    * Key options in .repo files 
+        * [label]
+            * Contains the label used as an identifier in the repo file
+        * name= 
+            * mandatory option that specifies the name of the repo 
+        * mirrorlist= (Typically used for bit online repo only)
+            * Optional parameter that refers to a URL where information about mirror servers for this server can be obtained
+        * baseurl= 
+            * Mandatory option that refers to the base URL where RPM packages are found 
+        * gpgcheck= 
+            * set to 1 if a GNU privacy guard (GPG) integrity check needs to be performed on the packages
+            * If set to 1 a GPG key is required 
+        * gpgkey= 
+            * Specifies the location of the GPG key that is used to check package integrity
+    * Specifying which repo to use cont
+        * line 151 part 2 
+
 
 
  

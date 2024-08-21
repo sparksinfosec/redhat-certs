@@ -1221,7 +1221,40 @@
         * gpgkey= 
             * Specifies the location of the GPG key that is used to check package integrity
     * Specifying which repo to use cont
-        * line 151 part 2 
+        * When creating a repo file 
+            * The baseurl parameter is the most important
+            * Because it tells your server where to find the files that are to be installed 
+        * Baseurl takes as its arg the URL where files need to be installed from 
+        * When using a url two components are includes 
+            * first the URL identifies the protocol to be used and is in teh format protcol://
+            * Such as http://, ftp://, or file://
+            * Following the URL is the exact location on that URL 
+            * Can be the name of a web server or FTP server
+            * Including subdirs where files are found 
+            * If the URL is file based, the location on the file system starts with a / as well 
+        * Therefore, for a file system based URL 
+            * There will be three slashes in the baseurl 
+            * Such as baseurl:///repo (which refers to the dir /repo on the local file system)
+    * Understanding repository security 
+        * Repos allow you to transparently install s/w from the internet (convenient but also security risk)
+        * Installing RPM packages are done with root permissions (so RPM package scripts execute as root also)
+        * Trust with the software package you are installing from
+        * This is why repos in general use key for package signing (RHEL good idea to use trusted repos only)
+        * Signed with a GPG key (Check whether packages have changed since the owner originally provided them)
+        * GPG key used to sign the s/w packages is typically made available thru the repo as well 
+        * Users of the repo can download the key and store it locally 
+        * So that the package signature check can be performed automatically each time a package is downloaded from the repo 
+        * If repo security is compromised and an intruder manages to hack the repo server, putting fake packages on it 
+            * The GPG key signature will not match 
+            * The dnf command will complain while installing new packages 
+        * GPG keys are highly recommended when using internet repos (internal repos risk is not as high)
+        * If you are using a repo where GPG package signing has been used 
+            * First contact with the repo the dnf command proposes to download the key that was used for package signing 
+            * This is a transparent procedure that requires no further action
+        * GPG keys that were used for package signing are installed to /etc/pki/rpm-gpg by default 
+    * Creating your own repos 
+        * Not a requirement for RHCSA 
+        * line 191 part 2 
 
 
 

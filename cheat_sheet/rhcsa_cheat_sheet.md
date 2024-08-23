@@ -1254,7 +1254,50 @@
         * GPG keys that were used for package signing are installed to /etc/pki/rpm-gpg by default 
     * Creating your own repos 
         * Not a requirement for RHCSA 
-        * line 191 part 2 
+        * But if not connected to Red Hat Repo, only way to install packages 
+        * Procedure is not hard to summarize 
+            * Need to make sure all RPM packages are available in the dir that you want to use as a repo 
+            * createrepo command to generate metadata that enables you to use that dir as a repo
+            * If using RHEL 9 installation disk, do not need to generate repo metadata 
+* Using dnf 
+    * Time to start using operational repos (dnf command to use repos)
+    * Common dnf tasks 
+        * search
+            * search packages for a string that occurs in the package name or summary
+        * search all
+            * search packages for a string that occurs in the package name, summary, or description
+        * [what]provides */name
+            * Performs a deep search in teh package to look for specific files within the package
+        * info
+            * provides more information about the package
+        * install
+            * install the package
+        * remove
+            * remove the package
+        * list [all | installed]
+            * List all or installed packages
+        * group list
+            * list package groups
+        * group install
+            * install all packages from a group
+        * update
+            * update package specified
+        * clean all
+            * remove all stored metadata
+    * Using dnf to find software packages 
+        * To install packages with dnf you need to know the name of the package 
+        * dnf search (can help with that)
+        * dnf search (gets in touch with the online repo might take a minute, then downloads most recent repo metadata to local machine)
+        * dnf search all (if dnf search <packagename> does not give the expected results)
+            * Performs a deeper search in the package description as well
+        * dnf whatprovides (command to find a package that contains a specific file (also dnf provides can help))
+        * dnf wp (3rd option that does exactly the same thing as whatprovides and provides)
+        * To make it clear you are looking for packages containing a specific file:
+            * Need to specify the filename as */filename (or use full pathname to the file you want to use)
+            * dnf whatprovides */Containerfile (looking for packages containing the file Containerfile)
+    * Getting more information about packages 
+        * line 271 part 2
+
 
 
 

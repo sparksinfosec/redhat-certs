@@ -1296,7 +1296,33 @@
             * Need to specify the filename as */filename (or use full pathname to the file you want to use)
             * dnf whatprovides */Containerfile (looking for packages containing the file Containerfile)
     * Getting more information about packages 
-        * line 271 part 2
+        * dnf info (followed by the name of the package) 
+    * Installing and removing software packages 
+        * dnf install (name of package: dnf install nmap, when done in this way dnf asks for confirmation)
+        * -y (option passes a yes to the confirmation prompt that dnf normally issues)
+        * dnf remove (to remove s/w packages, also does a dependency analysis)
+        * Which means it will remove the selected package as well as packages that depend on it 
+        * Avoid unpleasant suprises, should not use dnf remove with -y option
+        * NOTE: Some packages are protected (can not be easily removed)
+        * If dnf remove encounters protected packages it refuses to remove them 
+    * Showing Lists of packages 
+        * dnf list (command to show lists of packages - Without args shows a list of all s/w packages available)
+        * Includes the repo they were installed from (assuming it's installed/if a repo is shown the package is available in that specific repo)
+        * If @anaconda is listed the package has already been installed on the system
+        * dnf list installed (show packages that are installed on your server)
+        * dnf list command (can also prove useful when used with the name of a specific package as its arg)
+        * dnf list kernel (shows which version of the kernel is actually installed and which version is available as the most recent version in the repo)
+        * Useful if your system is using online repos and want to check if a new version of the package is available 
+    * Updating Packages 
+        * Repo maintainer is responsible for copying updated packages to the repo 
+        * Index in the repo always contains the current version of a package in the repo 
+        * Local machine also has a database available with current versions of packages that are used 
+        * dnf update (current versions of packages that are installed compared to the version of these packages in the repos)
+        * Updating packages the old version is replaced with a new version (except for the kernel)
+        * dnf update kernel (kernel package is not updated but the new kernel is installed in addition to the old kernel) 
+        * Booting you can select which kernel you want (so you can boot to previous versions)
+    * Working with dnf package groups 
+        * line 325 part 2
 
 
 

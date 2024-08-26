@@ -1322,7 +1322,17 @@
         * dnf update kernel (kernel package is not updated but the new kernel is installed in addition to the old kernel) 
         * Booting you can select which kernel you want (so you can boot to previous versions)
     * Working with dnf package groups 
-        * line 325 part 2
+        * May need several different packages (Config a web server, need PHP as well) 
+        * Package groups (defined in the repo dnf offers group management command to work with these)
+        * dnf group list (overview of all current groups)
+        * Some dnf groups not listed by default (dnf group list hidden) 
+        * dnf group info (get information about packages available in a group)
+        * dnf group info "Container Management" (note spaces, see what is in the Container management group)
+    * Using dnf history 
+        * dnf history (command to get an overview of all actions that have been issued)
+        * dnf history undo (followed by the number of the action to undo specific actions)
+* Managing Package Modules 
+    * line 368 part 2 
 
 
 

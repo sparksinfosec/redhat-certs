@@ -1332,7 +1332,14 @@
         * dnf history (command to get an overview of all actions that have been issued)
         * dnf history undo (followed by the number of the action to undo specific actions)
 * Managing Package Modules 
-    * line 368 part 2 
+    * RH has always maintained the philosophy that major versions of packages should not be changed during a distribution lifetime
+    * Changing a major version of any package often involves changing dependencies as well 
+    * To offer a higher level of flexibility, RHEL 8 (RH introduced two different repos)
+    * BaseOS repo is core OS packages (all packages in this repo will not change their major version during the distro lifetime)
+    * The Application Stream (AppStream) repo contains other packages that may change their major version during the distro lifetime 
+    * Important apps like python are provided as AppStream packages (ensure that if a new major version becomes available during the distro lifetime, this major version can be included)
+    * Understanding dnf modules 
+        * line 380 part 2 
 
 
 

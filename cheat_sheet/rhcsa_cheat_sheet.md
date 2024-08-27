@@ -1339,7 +1339,25 @@
     * The Application Stream (AppStream) repo contains other packages that may change their major version during the distro lifetime 
     * Important apps like python are provided as AppStream packages (ensure that if a new major version becomes available during the distro lifetime, this major version can be included)
     * Understanding dnf modules 
-        * line 380 part 2 
+        * A module describes a set of RPM packages that belong together, and adds features to package management 
+        * Each module can have one or more application streams 
+        * When working with modules that have different streams, only one stream can be enabled at the same time 
+        * A profile is a list of packages that are installed together for a particular use case (mods can also have one or more profiles)
+    * dnf module terminology 
+        * RPM 
+            * The default package format 
+            * Contains files, as well as metadata that describes how to install the files
+            * Optionally may contain pre and post installation scripts as well 
+        * Module 
+            * A delivery mechanism to install RPM packages 
+            * In a module different versions and profiles can be provided 
+        * Application Stream
+            * A specific version of the module 
+        * Profile 
+            * A collection of packages that are installed together for a particular use case 
+    * Managing Modules 
+        * dnf module command 
+        * dnf module list (to find out which modules are available)
 
 
 

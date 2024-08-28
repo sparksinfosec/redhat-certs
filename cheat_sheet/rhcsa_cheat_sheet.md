@@ -1358,6 +1358,20 @@
     * Managing Modules 
         * dnf module command 
         * dnf module list (to find out which modules are available)
+        * In the list of modules, you can see whether or not the module is installed and whether or not a specific stream is enabled 
+        * dnf list modulename (to list specific streams for a module)
+        * dnf module info (get information about specific profiles example: dnf module info php)
+        * dnf module info php:8.1 (profile info for a specific stream, stream version as a arg)
+        * After you find module info, next step is to enable a module stream and install modules 
+        * Every module has a default module stream, providing access to a specific version
+        * If you want a different version, should start by enabling the corresponding module 
+        * dnf module enable php:8.1 (enable specific version)
+        * dnf module install (install packages from a module, packages from the default mod stream will be installed) 
+        * You can also switch between app stream versions (for instance you are now on php:8.1 and want php:8.2)
+        * dnf module install php:8.2 (this will disable the old stream and enable the new stream)
+        * dnf distro-sync (ensure that all dependent packages that are not in the mod itself are updated)
+* Managing Software Packages with rpm
+    * line 438 part 2 
 
 
 

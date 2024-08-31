@@ -1371,7 +1371,13 @@
         * dnf module install php:8.2 (this will disable the old stream and enable the new stream)
         * dnf distro-sync (ensure that all dependent packages that are not in the mod itself are updated)
 * Managing Software Packages with rpm
-    * line 438 part 2 
+    * Repos did not always exist (rpm command was used to install package files after they had been downloaded)
+    * Worked but one major issue: dependency hell
+    * Modern RHEL systems, repos are used, and packages are installed using dnf 
+    * rpm command no longer used for software installation (does not mean rpm command has become totally useless)
+    * Can still query RPM packages (dnf database and the RPM database)
+    * Understanding RPM Filenames
+        * line 457
 
 
 

@@ -1377,7 +1377,75 @@
     * rpm command no longer used for software installation (does not mean rpm command has become totally useless)
     * Can still query RPM packages (dnf database and the RPM database)
     * Understanding RPM Filenames
-        * line 457
+        * Typical RPM filename looks like autofs-5.0.7-40.el7.x86_64.rpm
+            * autocfs: the name of the actual package
+            * 5.0.7: version of the package 
+            * This normally corresponds to the name of the package as it was released by the package creator 
+            * -40: sub version of the package 
+            * el7: RH version this package was created for 
+            * x86_64: Platform (32 bits or 64 bits) this package was created for
+    * Querying the RPM database 
+        * RPM queries can be a really useful way to find out how s/w can be configed and used 
+        * rpm -qa (command like dnf list installed, show a list of all software that is instllaed on the machine)
+        * grep on this command to find out specific package names (need the name for queries)
+        * rpm -qi nmap (to get a description of the package, this will perform a query of a package that is already installed on the system)
+        * Query the package database to get more details about it 
+        * rpm -ql nmap (which shows a list of all files that are in the package)
+        * rpm -qd nmap (shows all documentation available for the package)
+        * rpm -qc nmap (shows all config files in the package)
+        * rpm -qf followed by the specific filename you are looking for 
+        * rpm -qf /bin/ls (to find the name of the RPM package the ls command comes from)
+    * Querying RPM package files 
+        * It sometimes makes sense to query an RPM package file before actually installing it 
+        * -p option to do this (without -p option will query the database not the package file)
+        * When querying a package file you need to refer to the complete filename
+        * rpm -qp --scripts httpd-2.4.6-19.el7.centos.x86_64.rpm (queries specific RPM file to see whether it contains scripts)
+        * --scripts (query option that needs special attention, queries an rpm package or package file to see which scripts it contains (if any))
+        * Before installing RPM packages from unknown source (want to make sure it does not include any rogue scripts)
+    * Common RPM query commands 
+        * rpm -qf 
+            * Use a filename as its arg to find the specific RPM package a file belongs to 
+        * rpm -ql 
+            * uses the RPM database to provide a list of files in the RPM package 
+        * rpm -qi 
+            * Uses RPM database to provide package information (equivalent to yum info)
+        * rpm -qd 
+            * Uses the RPM database to show all documentation that is available in the package 
+        * rpm -qc 
+            * Uses the RPM database to show all config files that are available in the package 
+        * rpm -q --scripts 
+            * Uses the RPM database to show scripts that are used in the package 
+            * This is particularly useful with the -p option
+        * rpm -qp <pkg>
+            * the -p option is used with all the previous listed options to query individual RPM package files 
+            * Instead of RPM package database
+            * Using before install helps find out what is actually in the package before it is installed
+        * rpm -qR 
+            * Shows dependencies for a specific package 
+        * rpm -V 
+            * Shows which parts of a specific package have been changed since installation
+        * rpm -Va 
+            * Verifies all installed packages and shows which parts of the package have been changed since install
+            * This is an easy and convenient way to do package integrity check 
+        * rpm -qa 
+            * lists all packages that are installed on this server 
+    * Using repoquery 
+        * line 527 part 2 to take a deeper look 
+
+### Managing Processes 
+
+* The following topics are covered in this chapter 
+    * Introducing process management 
+    * Managing shell jobs
+    * Using common command line tools for process management 
+    * Using top to manage processes 
+    * Using tuned to optimize performance 
+* Following RHCSA exam objectives are covered in this chapter 
+    * Identify CPU/Memory-intensive processes and kill processes 
+    * Adjust process scheduling 
+    * Managing tuning profiles 
+* Introducing Process Management 
+    * line 610 part 2 
 
 
 

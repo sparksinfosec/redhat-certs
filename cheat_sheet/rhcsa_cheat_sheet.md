@@ -1445,7 +1445,60 @@
     * Adjust process scheduling 
     * Managing tuning profiles 
 * Introducing Process Management 
-    * line 610 part 2 
+    * For everything that happens on a linux server a process is started 
+    * Major distinction can be made between three process types 
+        * Shell Jobs (Commands started from the command line)
+            * They are associated with the shell that was curren when the process was started 
+            * Shell jobs are also referred to as interactive processes
+        * Daemons (processes that provide services)
+            * Normally started when a computer is booted
+            * Often (but certainly not in all cases) run with root privileges
+        * Kernel Threads (Are part of the linux kernel)
+            * You cannot manage them using common tools 
+            * But for monitoring of performance of a system, it is important to keep an eye on them
+    * When a process is started it can use multiple threads 
+    * A thread is a tak started by a process and that a dedicated CPU can service 
+    * Linux shell does not offer tools to manage individual threads (done from within the command)
+* Managing shell jobs 
+    * Foreground (default) or background processes
+    * Running jobs in the foreground or background 
+        * & (at the end of a command to start it in the background)
+        * fg (command to move the last job that was started in the background back as a foreground job)
+        * Can also use a job ID to move a specific job (if multiples) to the foreground
+        * Ctrl-Z (temp stop a job, does not remove from memory, pauses the job so it can be managed)
+        * bg (Once the job is paused can be moved to the background)
+        * Ctrl-C (stops and removes job from memory)
+        * Ctrl-D (EOF character to the current job, can complete what it is doing before stopping)
+    * Managing Shell Jobs
+        * jobs (command to see an overview of all current jobs)
+    * Job Management Overview
+        * & (used at the end of a command)
+            * Starts the command immediately in the background
+        * Ctrl-Z (Stops the job temporarily so that it can be managed)
+            * For instance, it can be moved to the background
+        * Ctrl-D 
+            * Sends the EOF char to the current job, indicates it should stop waiting for further input
+        * Ctrl-C 
+            * Can be used to cancel the current interactive job
+        * bg
+            * Continue the job that has just been frozen using Ctrl-Z in the background
+        * fg 
+            * Brings back to the foreground the last job that was moved to background execution
+        * jobs (shows which jobs are currently running from this shell)
+            * Displays job numbers that can be used as an arg to the command bg and fg 
+    * Understanding parent-child relations
+        * When a process is started from a shell, it becomes a child process of that shell
+        * The parent is needed to manage the child 
+        * For that reason, all processes started from a shell are terminated when the shell is stopped
+        * Processes started in the bg will not be killed when the parent shell from which they were started is killed 
+        * To terminate you need to use the kill command 
+        * NOTE: Background processes were also killed when the shell they were started from was terminated
+            * nohup (command in front to prevent this)
+            * No longer needed RHEL 9
+            * Child process becomes a child of systemd (if parent is killed while child process is still active)
+* Using common command line tools for process management 
+    * left off line 732
+            
 
 
 

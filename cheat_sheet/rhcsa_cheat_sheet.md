@@ -1497,17 +1497,8 @@
             * No longer needed RHEL 9
             * Child process becomes a child of systemd (if parent is killed while child process is still active)
 * Using common command line tools for process management 
-    * left off line 732
-            
-
-
-
-
- 
-            
-            
-
-     
-           
-
-
+    * Many processes on a linux server (things can go wrong)
+    * Important to know how noninteractive processes can be stopped
+    * Or how priority of these processes can be adjusted to make more system resources available for other processes 
+    * Understanding processes and threads
+        * line 738

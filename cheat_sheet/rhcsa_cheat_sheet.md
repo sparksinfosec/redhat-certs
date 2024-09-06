@@ -1501,4 +1501,6 @@
     * Important to know how noninteractive processes can be stopped
     * Or how priority of these processes can be adjusted to make more system resources available for other processes 
     * Understanding processes and threads
-        * line 738
+         * Tasks on linux are typically started as processes (one process can start several worker threads)
+         * line 740
+

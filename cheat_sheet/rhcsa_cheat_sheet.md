@@ -1522,5 +1522,15 @@
         * ps aux | grep dd (show process details about dd, including its PID, common use of ps)
         * pgrep dd (alt way to get same result, gets slist of PIDs that have a name containing the string dd)
     * Understanding process priorities
-        * 
+        * cgroups are used to allocate system resources 
+        * In cgroups three system areas, the so called slices are defined 
+            * system: this is where all systemd-managed processes are running
+            * user: this is where all user processes (including root processes) are running
+            * machine: this is optional slice is used for vms and containers 
+        * By default all slices have the same CPU weight (CPU capacity is equally divided if there is high demand)
+        * Within a slice, process priority can be managed by using nice and renice 
+    * Exploring relations between slices 
+        * By default all processes in the system slice get as many CPU cycles as all processes in the user slice
+        * Not on RHCSA exam (line 784-813 part 2 cert guide)
+        * line 787
 

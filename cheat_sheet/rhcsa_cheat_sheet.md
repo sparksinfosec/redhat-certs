@@ -1502,5 +1502,25 @@
     * Or how priority of these processes can be adjusted to make more system resources available for other processes 
     * Understanding processes and threads
          * Tasks on linux are typically started as processes (one process can start several worker threads)
-         * line 740
+         * Working with threads make sense, bc if the process is busy 
+            * The threads can be handled by different CPU
+            * OR cpu cores available in the machine
+        * As linux admin you cannot manage individual threads (you can manage processes tho)
+        * Programmer of the multithreaded app that has to define how threads relate to one another
+        * Good to know that there are two different types of background processes 
+            * Kernel threads (part of the linux kernel (started with its own PID))
+            * Daemon processes 
+        * Recognize the kernel processes bc they have a name that is between square brackets
+        * As an admin, kernel threads cannot be managed, cannot adjust their priority, or kill them
+    * Using ps to get process information
+        * ps (most common command to get an overview of currently running processes)
+        * Without args, shows the processes that have been started by the current user
+        * ps aux (short summary of active processes)
+        * ps -ef (looking for the name and the exact command that was used to start the process)
+        * ps fax (shows hierarchical relationship between parent and child processes)
+        * Important piece of info to get out of the ps command is the PID (many commands require the PID)
+        * ps aux | grep dd (show process details about dd, including its PID, common use of ps)
+        * pgrep dd (alt way to get same result, gets slist of PIDs that have a name containing the string dd)
+    * Understanding process priorities
+        * 
 

@@ -1532,5 +1532,5 @@
     * Exploring relations between slices 
         * By default all processes in the system slice get as many CPU cycles as all processes in the user slice
         * Not on RHCSA exam (line 784-813 part 2 cert guide)
-        * line 787
+        * line 787 (review if alot of this section is absolutely nec.)
 

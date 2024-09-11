@@ -1531,6 +1531,6 @@
         * Within a slice, process priority can be managed by using nice and renice 
     * Exploring relations between slices 
         * By default all processes in the system slice get as many CPU cycles as all processes in the user slice
-        * Not on RHCSA exam (line 784-813 part 2 cert guide)
+        * Not on RHCSA exam (line 784-813 part 2 cert guide, won't get questions but good to know how this works)
         * line 787 (review if alot of this section is absolutely nec.)
 

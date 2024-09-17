@@ -1532,5 +1532,16 @@
     * Exploring relations between slices 
         * By default all processes in the system slice get as many CPU cycles as all processes in the user slice
         * Not on RHCSA exam (line 784-813 part 2 cert guide, won't get questions but good to know how this works)
-        * line 787 (review if alot of this section is absolutely nec.)
+    * Managing Process Priorities
+        * When linux processes are started they are started with a specific priority 
+        * By default all regular processes are equal and are startted with the same priority (20 - top to view)
+        * nice and renice commands (change the default priority that was assigned when started)
+        * nice if you want to start a process with an adjusted priority (renice change currently running process)
+        * When using nice or renice to adjust process priority, you can select from values -20 to 19
+        * The default niceness of a process is set to 0 (which results in the priority value of 20)
+        * By applying a negative niceness, you increase the priority (positive niceness decreases priority)
+        * Not a good idea to use ultimate values immediately (increaments of 5 and see how it impacts app)
+        * Note regular user can only decrease the priority of a running process (must be root to use negative nice values to increase priority)
+    * Sending signals to processes with kill, killall, and pkill 
+        * 
 

@@ -1543,5 +1543,27 @@
         * Not a good idea to use ultimate values immediately (increaments of 5 and see how it impacts app)
         * Note regular user can only decrease the priority of a running process (must be root to use negative nice values to increase priority)
     * Sending signals to processes with kill, killall, and pkill 
-        * line 854 part 2
+        * Every process has a parent process, and as long as it lives, the parent process is responsible for the child processes it has created 
+        * Older versions of linux killing a parent process would also kill all of its child processes
+        * RHEL 9, killing a parent process all its child processes become children of systemd process
+        * man 7 signal for a complete overview of all the available signals 
+        * Three signals work for all processes 
+        * signal SIGTERM (15) is used to ask a process to stop 
+        * signal SIGKILL (9) is used to force a process to stop 
+        * SIGHUP (1) singnal is used to hang up a process 
+            * Effect is that the process will reread its config files
+            * Which maks this a useful signal to use after making mods to a process config file 
+        * to send a signal to a process, you use the kill command (most common is to stop a process)
+        * kill PID (sends SIGTERM to the process causing the process to cease its activity and close all open files)
+        * Somethimes the kill command does not work because the process you want to kill can ignore it 
+        * kill -9 PID (send the SIGKILL signal to the process)
+        * SIGKILL cannot be ignored it forces the process to stop but risk of losing data using this command
+        * In general it is a bad idea to use kill -9 (line 877 part 2)
+        * kill -l (list of available signals that can be used with kill)
+        * Some other commands related to kill: killall and pkill 
+        * pkill command bit easier to use bc it takes the name rather PID 
+        * killall command if multiple processes using the same name need to be killed simultaneously 
+        * kill with the specific PID is recommended (risk killing that do not need to be killed)
+    * Killing Zombies 
+        * line 910 part 2
 

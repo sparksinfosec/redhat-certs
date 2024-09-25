@@ -1565,5 +1565,28 @@
         * killall command if multiple processes using the same name need to be killed simultaneously 
         * kill with the specific PID is recommended (risk killing that do not need to be killed)
     * Killing Zombies 
-        * line 910 part 2
+        * Zombie are processes with a special state (have completed execution but are still listed in the process table)
+        * ps aux | grep defunct (check if you have zombies)
+        * Harmless but annoying to have, may want to clean them up (cannot kill them the normal way)
+        * line 917 part 2 breakdown of kill -SIGCHILD <parentpid>
+* Using top to manage processes 
+    * For common process management, top is good bc it gives an overview of the msot active processes currently running 
+    * Enables you to easily find processes that might need attention (and perform common process management tasks)
+    * Overview of different process states that you may observe 
+        * Running (R)
+            * The process is currently active and using CPU time
+            * or in the q of runnable processes waiting to get services 
+        * Sleeping (S)
+            * The process is waiting for an event to complete
+        * Uniterruptible sleep (D)
+            * The process is in a sleep state that cannot be stopped 
+            * This usually happens while a process is waiting for I/O
+            * This state is also known as blocking state
+        * Stopped (T)
+            * The process has been stopped
+            * Typically has happened to an interactive shell process using Ctrl-Z key sequence 
+        * Zombie (Z)
+            * The process has been stopped but could not be removed by its parent 
+            * Which has put it in an unmanageable state 
+    * line 951 part 2
 

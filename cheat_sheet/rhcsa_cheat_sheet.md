@@ -1588,5 +1588,7 @@
         * Zombie (Z)
             * The process has been stopped but could not be removed by its parent 
             * Which has put it in an unmanageable state 
-    * line 951 part 2
+    * From top, type k; top then prompts for the PID of the process you want to send a signal to 
+    * By default the most active process is selected 
+    * line 954
 

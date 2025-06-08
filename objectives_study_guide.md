@@ -112,7 +112,8 @@
 * Access remote systems using ssh 
     * ssh user@ip_address
     * ssh ip_address (connect to the same user that you are on the local machine)
-    * Make sure to look at /etc/hosts in order to config hostname instead of IPs (rhcsa_guide)
+    * /etc/hosts
+        * IP_address hostname
 * login and switch users in multiuser target 
     * su - (switch to a user and will be prompted for there password)
         * su -c "whoami" (specific command)
@@ -166,6 +167,7 @@
     * chgrp group file (to set group ownership)
     * chown lisa:sales newfiles/ (change user and group)
     * chown :sales newfile/ (change group ownership with chown)
+    * chmod (change file permissions)
     * RWX
         * within files and dirs 
             * files 
@@ -187,13 +189,14 @@
         * Exact permissions
             * u=, g=, o= (wipes everything set them to an exact value)
 * locate, read and use system docs including man, info, and files in /usr/share/doc 
-    * who [OPTION] ... [ FILE | ARG1 ARG2 ]
+    * who [OPTION] ... [ FILE | ARG1 ARG2 ] (reading man page options)
         * [ ] optional ... multiple options
         * | OR indicator 
     * --help (man has more information)
     * man man
     * man -k (-K to go through them)
     * sudo mandb (rebuild man pages)
+    * /usr/share/doc
 
 ## Create simple shell scripts 
 
@@ -240,7 +243,7 @@
         * for i in {1..10};do echo $i;done
         * for i in {one,two,three};do echo $i;done
         * for i in $(seq 1 10);do echo $i;done (passing a command)
-        * for i in `seq 1 10`;do echo $i;done (older way to pass a command)
+            * for i in `seq 1 10`;do echo $i;done (older way to pass a command)
         * can also just list them without anything
             * for i in test test1 test2 test3;do echo $i;done
         * for (( i=0 ; i <= 100; i++ ));do echo $i;done

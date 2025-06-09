@@ -366,7 +366,7 @@
     * loginctl 
         * loginctl list-users (shows users)
         * loginctl list-sessions (show sessions)
-        * logictl userstatus <UID> (show a tree of processes currently open by this user)
+        * logictl user-status <UID> (show a tree of processes currently open by this user)
         * loginctl terminate-session (stop sessions)
         * loginctl terminate-user (stop users)
 * Adjust process scheduling 
@@ -419,8 +419,8 @@
         * journalctl -b (shows current boot logs)
             * journalctl -b 0 (current boot - and can use other numbers)
         * journalctl --since "-1 hour"
-        * journalctl -o (verbose)
-        * logger -p err hello
+        * journalctl -o (output string so specify verbose journalctl -o verbose)
+        * logger -p err hello (write to logger then use journalctl -p err to see it)
     * /etc/logrotate.conf
         * systemctl list unit-files -t timer 
         * systemctl status logrotate.timer

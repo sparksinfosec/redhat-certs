@@ -338,19 +338,19 @@
     * ps 
         * ps aux (show all with user information)
         * process commands wrapped in brackets (kernel processes running in privileged area)
-    * top 
-        * Shows most CPU intensive ones 
-        * q to exit
-        * arrows and pager buttons 
         * ps aux (all users)
         * ps fax (all forest)
         * ps lax (all long listing to see nice)
         * ps -U user (see processes for a specific user - ps -fU user)
         * ps u 1 (process ID - ps 1)
         * pgrep -a bash (might be helpful but look at both with regular grep)
+    * top 
+        * Shows most CPU intensive ones 
+        * q to exit
+        * arrows and pager buttons 
     * Signals 
-        * kill -L 
-        * kill -9 PID 
+        * kill -L (important to see all signals)
+        * kill -9 PID (send a 9 (SIGKILL) to the PID)
         * kill PID (sends SIGTERM by default)
         * pkill bash (kill all processes under this name)
     * Background and foreground

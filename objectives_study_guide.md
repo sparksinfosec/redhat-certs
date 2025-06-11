@@ -39,6 +39,7 @@
     * find command 
         * find / -name "hosts"
         * find / -type f -size +100M
+            * fine / -type f -size +1M -size -100M (bigger than 1M and smaller than 100M)
         * find . -perm /4000
         * find /etc -exec grep -l student {} \; -exec cp {} find/contents/\; 2> /dev/null
         * sudo find / -name "Containerfile" -exec ls -l {} \; (look at the size)
@@ -84,7 +85,7 @@
         * grep -v (exclude search results)
         * grep -i (insensitive)
         * grep -A5 -B5 (after and before lines)
-        * grep -R (recursively search dirs)
+        * grep -R (recursively search dirs difference between -r)
     * regular expressions 
         * man 7 regex 
         * grep -E (extended regular expressions)
@@ -155,10 +156,10 @@
     * rm -r dir/ (remove recursively)
         * rmdir (removes a dir also)
 * create hard and soft links 
-    * ls -il (inode number)
+    * ls -il (inode number might need ls -ila (show all and list plus inode))
+    * ln [target] [linkname]
     * ln /etc/hosts myhosts 
     * ln -s myhost symhost
-    * ln [target] [linkname]
     * ln path_to_target path_to_link_file
     * Only hardlink to files not folders (only files on same filesystem)
 * List, set, and change standard ugo/rwx permissions 
@@ -231,7 +232,7 @@
             * -gt -lt (greater than and less than numbers)
             * [[ ]] (only in bash)
             * [ COND1 ] && [ COND2 ]
-            * [ COND1 ] || [ COND2 ]
+            * [ COND1 ] || [ COND2 ] - OR operator
             * [[ COND1 || COND2 ]]
             * [ -e FILE ] (if files exists)
             * -d FILE (if file exists and is a dir)
@@ -244,6 +245,8 @@
         * for i in {one,two,three};do echo $i;done
         * for i in $(seq 1 10);do echo $i;done (passing a command)
             * for i in `seq 1 10`;do echo $i;done (older way to pass a command)
+            * for i in `cat file`;do echo $i;done (can be any command)
+        * for i in *.txt;do echo $i;done (*) THIS will look at any .txt file in current dir
         * can also just list them without anything
             * for i in test test1 test2 test3;do echo $i;done
         * for (( i=0 ; i <= 100; i++ ));do echo $i;done
@@ -273,6 +276,7 @@
         * for args above 9th ${10}
         * $@ (all args as a single string seperated by spaces)
         * $# (total number of args passed)
+        * $? (exit code of the previous command)
     * read -p "Enter in something" choice (read input into a variable called choice)
         * read variable (without the prompt)
 * Processing output of shell command within scripts 
@@ -314,7 +318,7 @@
     * getting to grub boot screen
         * e (to get to the grub options - esc or arrows up and down to get grub)
         * system.unit=xxx.target (boot specific target)
-            * in the linux kernel line add system.unit=rescue.target (boot into the rescue target)
+            * in the linux kernel line add systemd.unit=rescue.target (boot into the rescue target)
     * Modifying persistent grub2 parameters 
         * /etc/default/grub (config file to edit)
         * after making changes compile changes to grub.cfg
@@ -343,7 +347,9 @@
         * ps lax (all long listing to see nice)
         * ps -U user (see processes for a specific user - ps -fU user)
         * ps u 1 (process ID - ps 1)
+        * ps PID
         * pgrep -a bash (might be helpful but look at both with regular grep)
+        * echo $$ (see the current shell procress ID)
     * top 
         * Shows most CPU intensive ones 
         * q to exit
@@ -381,7 +387,7 @@
         * tuned-adm list (list all profiles)
         * tuned-adm active (show active profile)
         * tuned-adm profile balanced (change to the balanced profile)
-        * tuned-adm profile-info (get info about a profile no option shows current)
+        * tuned-adm profile_info (get info about a profile no option shows current)
         * tuned-adm recommend 
         * tuned-adm verify
         * tuned-adm auto_profile
@@ -422,11 +428,11 @@
         * journalctl -o (output string so specify verbose journalctl -o verbose)
         * logger -p err hello (write to logger then use journalctl -p err to see it)
     * /etc/logrotate.conf
-        * systemctl list unit-files -t timer 
+        * systemctl list-unit-files -t timer 
         * systemctl status logrotate.timer
         * systemctl cat logrotate.service 
         * /etc/logrotate.conf 
-        * man logrotate (has great config examples)
+        * man logrotate *(has great config examples)*
 * start, stop, and check the status of network services
     * ss and netstat
         * ss -ltunp
@@ -442,8 +448,7 @@
             * systemctl start sshd.service
             * systemctl disable sshd.service (disable at boot)
             * systemctl enable sshd.service (enable at boot)
-        * ps and lsof 
-            * ps PID (to look at the process)
+        * lsof 
             * lsof -p PID (look at open files for the service)
         * netstat -ltunp (almost the same as ss)
             * ss is the new version (good to know but stick with ss)

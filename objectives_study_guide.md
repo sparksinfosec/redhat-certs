@@ -83,7 +83,7 @@
 * Use grep and regular expression to analyze text 
     * grep to find text in files or output
         * grep -v (exclude search results)
-        * grep -i (insensitive)
+        * grep -i (case insensitive)
         * grep -A5 -B5 (after and before lines)
         * grep -R (recursively search dirs difference between -r)
     * regular expressions 
@@ -463,7 +463,7 @@
     * rsync (sync files)
         * rsync -a path_to_local user@IP_address:/path_to_remote
         * rsync -a local_dir/ local_dir/
-        * rsunc -a * server:/home/student/
+        * rsync -a * server:/home/student/
         * Most common options 
             * -r (recursive sync the entire dir tree)
             * -l (sync symbolic links)
@@ -499,7 +499,7 @@
             * QUIT to exit and wipe all changes 
         * STILL LOOK AT FDISK and work with it abit
     * MBR and GPT
-        * GPT is more often
+        * GPT is more often used
         * Master Boot record
             * Extended and logical partitions (max partitions without extended and logical)
         * GPT (GUID partition table)

@@ -594,19 +594,21 @@
     * xfs_admin (admin xfs fs)
     * tune2fs (admin ext fs ext4)
     * mkfs.xfs -L (create the label as well as the FS)
-    * maybe look at lvmvdo
+    * maybe look at lvm vdo?
 * mount and unmount network file systems using NFS
-    * Server config (may not be needed
-        * dnf install fns-utils 
+    * Server config (may not be needed)
+        * dnf install nfs-utils 
         * mkdir -p /nfsdata /home/ldap/ldapuser{1..9}
         * echo "/nfsdata *(rw,no_root_squash)" >> /etc/exports (*)
         * echo "/home/ldap *(rw,no_root_squash)" >> /etc/exports (*)
         systemctl enable --now nfs-server
         * for i in nfs mountd rpc-bind;do firewall-cmd --add-service $i --permanent;done
-        * firewall-cmd reload
+        * firewall-cmd --reload
     * Make sure nfs-utils are installed
-    * shoudmount -e nfserver (show exports available)
+    * showmount -e nfserver (show exports available)
     * mount nfsserver:nfsdata /mnt (mounting the specific share nfs data)
+    * fstab (just in case)
+        * node01:/share /mnt nfs defaults 0 0 (nfsserver:share_dir /mount_point_local nfs defaults 0 0)
 * configure autofs 
     * dnf install -y autofs 
     * /etc/auto.master

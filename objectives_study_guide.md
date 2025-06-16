@@ -673,7 +673,7 @@
         * chown :sales newfile/ (change group ownership with chown)
         * chown steve newfile/ (just change the user owner only)
     * setfacl (might not be needed)
-        * sudo setfaxl --modify user:aaron:rw exampleFile
+        * sudo setfacl --modify user:aaron:rw exampleFile
         * Presence of ACLs indicated by a plus sign in the permission listing 
         * sudo setfacl --modify mask:r-- exampleFile
         * sudo setfacl --modify group:whell:rw exampleFile
@@ -799,7 +799,7 @@
         * sudo systemctl reload sshd.service (reload the config without stoping/starting)
         * sudo systemctl reload-or-restart sshd.service (reload if supported restart if not)
         * sudo systemctl is-enabled sshd.service (see if its enabled or not)
-        * sudo systemctl disbale sshd.service (disable will not come up on boot)
+        * sudo systemctl disable sshd.service (disable will not come up on boot)
         * sudo systemctl enable sshd.service (enable to start at boot)
         * sudo systemctl enable --now sshd.service (enable and start the service)
         * sudo systemctl disable --now sshd.service (disable and stop the service)
@@ -848,7 +848,7 @@
 * install and update software packages from red hat network, a remote repo, or from the local system
     * Managing RPM packages
         * rpm -qa (show all packages that are currently installed)
-        * rpm -qf filename (shows from which package filename was installed)
+        * rpm -qf filename (shows from which package filename was installed like /usr/bin/ls)
         * rpm -ql (list files installed from a package)
         * rpm -q --scripts (show scripts executed while installing the package)
         * rpm -q --changelog (shows the change log for a package)
@@ -907,7 +907,8 @@
                     * create the file manually (/etc/yum.repos.d/whatever.repo)
                         * Make sure the names, baseurl, enabled, and gpg is set correctly)
                         * Then you should be able to see them via dnf repolist (dnf repolist --all)
-                        * enable and disable (dnf repolist --enable Repo_ID - dnf repolist --disable Repo_ID)
+                        * enable and disable CHECK (dnf repolist --enable Repo_ID - dnf repolist --disable Repo_ID)
+                        * dnf config-manager --enable REPO_ID (--disable REPO (actually enable and disable repos))
             * Using dnf config-manager
                 * man dnf-config-manager (man dnf.conf maybe helpful)
                 * dnf config-manager --enable name_of_repo (ACCESS REPO thru subscription manager (no on exam likely)
@@ -1174,7 +1175,7 @@
             * Nothing to dirs
 * configure key based authentication for ssh
     * Configs 
-        * /etc/ssh/sshd_config
+        * /etc/ssh/sshd_config (d for daemon server config)
             * Daemon config 
             * man sshd_config 
             * Port 22 
@@ -1223,17 +1224,18 @@
         * sudo semanage user -l (roles that each user can have on the system)
     * ps axZ (process with SELinux)
 * restore default file contexts 
-    * semanage fcontext -a (se a new context label)
+    * semanage fcontext -a (set a new context label)
     * semanage fcontext -m (modify an existing context label)
     * restorecon (enforce the policy setting on the filesystem)
     * touch /.autorelabel (relabel the files to the context specified in the policy)
     * man semanage-fcontext (documentation)
     * semanage fcontext -l -C (show settings that have changed in the current policy)
     * man pages for selinux-policy-doc
-    * semanage fcontext -a -t http_sys_content_t "/web(/.*)? (*)
-    * restorecon -Rv /web
+    * semanage fcontext -a -t http_sys_content_t "/web(/.*)?" (*)
+    * restorecon -Rv /web (restorecon -R -v /web (man pages))
 * manage SELinux port labels
     * semanage port -a -t ssh_port_t -p tcp 2022
+        * semanage port -a -t http_port_t -p tcp 81
     * man semanage-port 
 * Use boolean settings to modify system SELinux settings 
     * semanage boolean -l (overview of booleans)
@@ -1268,7 +1270,7 @@
         * podman search (searches the registries for images)
         * podman run (runs a container)
             * podman run -d --name sleepy docker.io/redhat/image
-            * podman run -it 
+            * podman run -it (interactive mode)
         * podman stop (stops a currently running container)
         * podman ps (shows information about containers)
             * podman ps -a
@@ -1278,9 +1280,9 @@
         * podman pull (pulls an image from the registry)
         * podman exec (executes a command in a running container)
         * podman rm (removes a container)
-    * skopeo
+    * skopeo (additional information needed)
         * skopeo inspect image (inspect remote images)
-        * skopeop inspect --config image
+        * skopeo inspect --config image
         * skopeo copy docker://quay.io/image docker://regiry.kodekloud.com/image
         * skopeo copy oci:busybox_ocilayout:latest dir:myemptydir (copy locally)
         * skopeo delete docker://localhost:500/localimage

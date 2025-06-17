@@ -1260,7 +1260,7 @@
     * podman search (search the registers for images)
     * podman pull (pulls an image from a registry)
     * podman images (list images)
-    * podman build -t mymap . (build from a containerfile)
+    * podman build -t mymap . (build from a containerfile -t for tag to name the image)
         * podman image (should show there)
     * podman info 
 * inspect container images 
@@ -1330,7 +1330,7 @@
         * Next
             * podman unshare chown nn:nn directoryname (set the container UID as teh owner of the dir on the host)
             * directoryname (must be in the user home dir because it would not be a part of the user namespace)
-        * podman unchare cat /proc/slef/uid_map (verify mapping)
+        * podman unshare cat /proc/slef/uid_map (verify mapping)
         * ls -ld /directoryname (verify the mapped user is the owner on the host)
         * SELinux config 
             * :Z (option to auto set the context 

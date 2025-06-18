@@ -556,6 +556,7 @@
             * findmnt --verify 
             * mount -a (or swapon -a in this case)
         * swapon -a (activate all swap enables all swap in fstab)
+        * /dev/sda7 none swap default 0 0 
         * dd command 
             * fallocate -l 1G example.txt (make a 1G file called example.txt)
             * making a swap file from dd 

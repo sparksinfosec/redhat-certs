@@ -499,7 +499,7 @@
             * QUIT to exit and wipe all changes 
         * STILL LOOK AT FDISK and work with it abit
     * MBR and GPT
-        * GPT is more often used
+        * GPT is most common
         * Master Boot record
             * Extended and logical partitions (max partitions without extended and logical)
         * GPT (GUID partition table)

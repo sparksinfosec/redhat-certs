@@ -461,6 +461,7 @@
         * man scp
     * sftp (look at kode kloud notes for more basics)
     * rsync (sync files)
+        * rsync SRC ... DEST 
         * rsync -a path_to_local user@IP_address:/path_to_remote
         * rsync -a local_dir/ local_dir/
         * rsync -a * server:/home/student/
@@ -1338,5 +1339,15 @@
             * podman run ... -v /home/student/mydb:/var/lib/mysql:Z 
 
 
+## Misc 
 
+* HTTP CONFIG 
+    * /etc/httpd/conf/httpd.conf (main config)
+    * /etc/httpd/conf.d (drop in files)
+    * /var/www/html/ (default doc root)
+        * index.html
+    * /var/log/httpd (apache logs)
+    * Need to look at changing defaults for the config such as doc root and port number
+        * semanage fcontext -a -t http_sys_content_t "/web(/.*)? (*)
+        * sealerts will come in handy 
 

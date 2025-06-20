@@ -113,3 +113,5 @@
 * man semanage-port
 * man podman-generate-systemd
 * man podman-generate
+* man dnf-config-manager 
+    * man dnf.conf

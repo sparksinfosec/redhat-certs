@@ -565,7 +565,6 @@
             * sudo chmod 600 /swapfile
             * mkswap /swapfile
             * swapon /swapfile
-            * Not sure about fstab
     * Stratis
         * sudo dnf install stratisd stratis-cli (start and enable the service)
         * sudo stratis pool create my-pool /dev/vda
@@ -603,7 +602,7 @@
         * mkdir -p /nfsdata /home/ldap/ldapuser{1..9}
         * echo "/nfsdata *(rw,no_root_squash)" >> /etc/exports (*)
         * echo "/home/ldap *(rw,no_root_squash)" >> /etc/exports (*)
-        systemctl enable --now nfs-server
+        * systemctl enable --now nfs-server
         * for i in nfs mountd rpc-bind;do firewall-cmd --add-service $i --permanent;done
         * firewall-cmd --reload
     * Make sure nfs-utils are installed
@@ -642,7 +641,7 @@
             * df -h 
             * vgs 
             * vgextend vgfiles /dev/sde2 (add a new PV to the VG)
-            * lvextend -r -l +%0%FREE /dev/vgfiles/lvfiles
+            * lvextend -r -l +50%FREE /dev/vgfiles/lvfiles
         * Remove a VG from a PV 
             * pvmove -v /dev/sdf2 /dev/sdf1 (move all used extents from sdf2 to sdf1)
             * vgreduce vgdemo /dev/sdf2
@@ -674,6 +673,7 @@
         * chown lisa:sales newfiles/ (change user and group)
         * chown :sales newfile/ (change group ownership with chown)
         * chown steve newfile/ (just change the user owner only)
+        * chmod (for file/dir permissions)
     * setfacl (might not be needed)
         * sudo setfacl --modify user:aaron:rw exampleFile
         * Presence of ACLs indicated by a plus sign in the permission listing 
@@ -882,6 +882,7 @@
     * Groups and modules 
         * dnf group list hidden (dnf group list also shows groups and hidden groups (all))
         * dnf group info <groupname> (see packages within a group)
+        * dnf group install 
         * Mandatory and default packages are installed 
             * --with-optional (to install optional packages also)
         * Spaces for group name so quotes are important
@@ -909,7 +910,7 @@
                     * create the file manually (/etc/yum.repos.d/whatever.repo)
                         * Make sure the names, baseurl, enabled, and gpg is set correctly)
                         * Then you should be able to see them via dnf repolist (dnf repolist --all)
-                        * enable and disable CHECK (dnf repolist --enable Repo_ID - dnf repolist --disable Repo_ID)
+                        * enable and disable CHECK (dnf repolist --enabled Repo_ID - dnf repolist --disabled Repo_ID)
                         * dnf config-manager --enable REPO_ID (--disable REPO (actually enable and disable repos))
             * Using dnf config-manager
                 * man dnf-config-manager (man dnf.conf maybe helpful)
@@ -1063,11 +1064,13 @@
         * useradd -D (list or change defaults)
         * /etc/default/useradd (applies to useradd only)
         * /etc/login.defs (system wide)
+        * /etc/security/pwqualifty.conf
             * some important options use as password aging controls 
         * /etc/skel (files that are created in user home dir upon creation)
 * change passwords and adjust password aging for local user accounts 
     * passwd (change password for user: passwd linda, passwd root, by itself will change current user)
     * /etc/login.defs (changing password age controls here PASS_MAX_DAYS)
+    * /etc/security/pwquality.conf
     * Limit access 
         * usermod -L anna (lock user anna account)
         * usermod -U anna (unlock user anna account)

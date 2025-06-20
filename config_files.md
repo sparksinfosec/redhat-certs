@@ -78,6 +78,7 @@
 * User defaults 
     * /etc/default/useradd (applies to useradd only)
     * /etc/login.def (system wide - important options like password aging)
+    * /etc/security/pwquality.conf (password min length setting)
 * SSH config 
     * /etc/ssh/sshd_config (server daemon config)
     * /etc/ssh/ssh_config (client config)
@@ -113,5 +114,3 @@
 * man semanage-port
 * man podman-generate-systemd
 * man podman-generate
-* man dnf-config-manager 
-    * man dnf.conf

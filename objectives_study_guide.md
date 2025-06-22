@@ -1238,6 +1238,11 @@
     * man pages for selinux-policy-doc
     * semanage fcontext -a -t http_sys_content_t "/web(/.*)?" (*)
     * restorecon -Rv /web (restorecon -R -v /web (man pages))
+    * finding the context type you need 
+        * dnf install selinux-policy-doc 
+        * man -k _selinux 
+        * sudo mandb
+        * man -k _selinux | grep http
 * manage SELinux port labels
     * semanage port -a -t ssh_port_t -p tcp 2022
         * semanage port -a -t http_port_t -p tcp 81
@@ -1267,6 +1272,7 @@
     * podman images (list images)
     * podman build -t mymap . (build from a containerfile -t for tag to name the image)
         * podman image (should show there)
+        * podman build -t imagename:tag . 
     * podman info 
 * inspect container images 
     * podman inspect (show container or image details)
@@ -1296,6 +1302,7 @@
 * perform basic container management such as running, starting, stopping, and listing running containers 
 * Run a service inside a container 
     * Mapping ports and config variables 
+        * podman inspect (look for usage syntax that explains needed env variables)
         * podman run --name mydb quay.io/centos/mariadb
         * podman run --name mydb -e MYSQL_ROOT_PASSWD=password quay.io/centos/mariadb
     * Port access/config application access 
@@ -1333,7 +1340,7 @@
             * podman inspect imagename (probably better)
             * podman exec containername grep username /etc/passwd 
         * Next
-            * podman unshare chown nn:nn directoryname (set the container UID as teh owner of the dir on the host)
+            * podman unshare chown nn:nn directoryname (set the container UID as the owner of the dir on the host)
             * directoryname (must be in the user home dir because it would not be a part of the user namespace)
         * podman unshare cat /proc/slef/uid_map (verify mapping)
         * ls -ld /directoryname (verify the mapped user is the owner on the host)
@@ -1353,4 +1360,6 @@
     * Need to look at changing defaults for the config such as doc root and port number
         * semanage fcontext -a -t http_sys_content_t "/web(/.*)? (*)
         * sealerts will come in handy 
+        * man semanage-port (great examples)
+
 

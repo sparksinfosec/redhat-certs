@@ -6,6 +6,10 @@
     * reread
     * make sure the names of files are exact
     * make sure to focus in on this as the grading is automated
+* Read all questions carefully - make a gameplan
+    * Do the easy questions first that you know 100%
+    * Reboot often to check configs 
+    * organize
 * Do not rely on custom configs of your system
 * set -o vi (doing this for the exam?)
     * Get in the habit to use this on the command line (but needs to be set)
@@ -17,6 +21,55 @@
 * Need to finish and then go through the exam objectives and any test you can find
 * Looking at reddit post and external sources about specific things to look at
     * Like containers and autofs
+* Day zero reviews 
+    * autofs and nfs shares 
+        * Autofs 
+            * dnf install -y autofs 
+            * /etc/auto.master
+                * /users (local mount) /etc/auto.users (config file)
+                * /etc/auto.users (config file)
+                    * * (wildcard local mount) -rw nfsserver:nfsshare/& (for all in NFS share)
+            * Non wildcard 
+                * /etc/auto.master
+                    * /nfsdata /etc/auto.nfsdata
+                * /etc/auto.nfsdata
+                    * files (local mount under /nfsdata) -rw nfsserver:nfsshare 
+    * podman login
+        * podman login registry.redhat.io
+        * /etc/containers/registries.conf
+    * selinux 
+        * semanage fcontext 
+        * semanage port 
+        * semanage boolean 
+            * getsebool 
+                * getsebool -a 
+            * setsebool
+                * setsebool -P boolean on|off
+    * firewall-cmd
+        * firewall-cmd --list-all
+        * firewall-cmd --get-services
+        * firewall-cmd --add service http
+        * firewall-cmd --add-port=80/tcp
+    * swap and lvm
+        * lvm
+            * PV 
+            * VG
+            * LV
+            * pv create /dev/sdb1
+            * vgcreate vgdata (name) /dev/sdb1 (device from pv)
+            * lvcreate -n lvdata -L 1G vgdata (name lvdata -L size from vgdata
+            * lvdisplay 
+    * web server 
+        * /etc/httpd/conf/httpd.conf
+        * /var/www/html 
+        * firewall, selinux file context, selinux ports 
+    * RD.break 
+        * rd.break (to grub config line)
+        * mount -o remount,rw .sysroot
+        * chroot /sysroot
+        * passwd root 
+        * touch /.autorelabel
+        * exit > reboot
 
 ## Common review/reminders
 
@@ -317,7 +370,7 @@
 * interrupt the boot process in order to gain access to a system
     * getting to grub boot screen
         * e (to get to the grub options - esc or arrows up and down to get grub)
-        * system.unit=xxx.target (boot specific target)
+        * systemd.unit=xxx.target (boot specific target)
             * in the linux kernel line add systemd.unit=rescue.target (boot into the rescue target)
     * Modifying persistent grub2 parameters 
         * /etc/default/grub (config file to edit)
@@ -508,6 +561,8 @@
 * create and remove physical volumes 
     * Read the digital ocean article 
     * pvcreate
+    * pvreduce
+    * pvremove
 * assign physical volumes to volume groups 
     * PV = physical volume 
     * VG = Volume group 
@@ -627,6 +682,10 @@
         * vim /etc/auto.homes 
             * * -rw nfsserver:/home/ldap/&
         * systemctl restart autofs 
+        * /etc/auto.master 
+            * /users (local mount) /etc/auto.users (config file)
+        * /etc/auto.users
+            * * (wildcard local mount) -rw server2:/users/& (NFS server, NFS dir + & all after parent dir)
 * extend existing logical volumes 
     * lvextend
         * lvextend -r -L +1G (to grow the LVM including the filesystem its hosting)
@@ -762,6 +821,7 @@
                 * 10 * * * * logger HELLO (full command job)
             * /etc/crontab (nice syntax example for time specification)
             * Do not edit /etc/crontab directly, use /etc/cron.d instead
+            * /var/log/cron (verify the job)
         * anacron
             * Not a specific time (have a job that needs to be run but do not care when)
             * takes care of jobs in /etc/cron.{hourly,daily,weekly,monthly}
@@ -904,7 +964,7 @@
                     * ftp://path/to/repo
                     * http:// user : password @www.example.com/repo/
                 * enabled=1 (needs to be enabled)
-                * gpgcheck=1 (gpgcheck)
+                * gpgcheck=1 (gpgcheck or 0 to exclude)
                 * gpgkey=https:download.docker.com/linux/rhel/gpg (gpg key to look at)
                 * STEPS: 
                     * create the file manually (/etc/yum.repos.d/whatever.repo)
@@ -1146,7 +1206,7 @@
     * Make sure to review the File permission section for others
     * umask
         * /etc/bashrc
-        * ~/.bashrc (userspecific)
+        * ~/.bashrc (user specific)
         * source ~/.bashrc (reload the bashrc)
     * Default permissions for: Files = 666 and Dirs = 777 (umask is subtracted from this)
     * first digit is the user permissions
@@ -1223,6 +1283,7 @@
         * enforcing=1 (will start in enforcing mode)
         * selinux=disable (disable)
         * selinux=1 (enable)
+        * autorelabel=1
     * ls -Z (to see the context on files)
         * id -Z (security context for the user)
         * sudo semanage login -l (see how security context mapping is done)
@@ -1240,9 +1301,9 @@
     * restorecon -Rv /web (restorecon -R -v /web (man pages))
     * finding the context type you need 
         * dnf install selinux-policy-doc 
-        * man -k _selinux 
+        * man -k _selinux (_)
         * sudo mandb
-        * man -k _selinux | grep http
+        * man -k _selinux | grep http (_)
 * manage SELinux port labels
     * semanage port -a -t ssh_port_t -p tcp 2022
         * semanage port -a -t http_port_t -p tcp 81
@@ -1267,6 +1328,7 @@
 * find and retrieve container images from a remote registry 
     * /etc/containers/registries.conf (registry access config file)
         * ~/.config/containers/registries.conf (user specific config)
+        * podman login
     * podman search (search the registers for images)
     * podman pull (pulls an image from a registry)
     * podman images (list images)
@@ -1290,6 +1352,8 @@
         * podman inspect (shows container or image details)
         * podman pull (pulls an image from the registry)
         * podman exec (executes a command in a running container)
+            * podman exec mycontainer uname -r (run the uname command in the container)
+            * podman exec -it mycontainer /bin/bash (connect to the bash shell within a container)
         * podman rm (removes a container)
     * skopeo (additional information needed)
         * skopeo inspect image (inspect remote images)
@@ -1358,8 +1422,12 @@
         * index.html
     * /var/log/httpd (apache logs)
     * Need to look at changing defaults for the config such as doc root and port number
-        * semanage fcontext -a -t http_sys_content_t "/web(/.*)? (*)
+        * semanage fcontext -a -t http_sys_content_t "/web(/.*)? (*) (*)
+            * semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?" 
+            * restorecon -R -v /web
         * sealerts will come in handy 
         * man semanage-port (great examples)
+            * semanage port -a -t http_port_t -p tcp 81
+
 
 

@@ -40,4 +40,4 @@
 
 ### Chapter 2 Introduction to Ansible 
 
-* 
+* pg 25

@@ -41,7 +41,7 @@
 ### Chapter 2 Introduction to Ansible 
 
 * Ansible is an automation tool for managing your infra elements such as cloud virtual or bare metal servers, network, and app config
-* Like other autoation tools ansible uses a code first approach to describe the state of your infra
+* Like other automation tools ansible uses a code first approach to describe the state of your infra
     * so you can expect the same results every time you run it 
 * Ansible focuses on three important topics to make it the perfect tool for your IT operations 
     * ansible provides instructions to automate operations 
@@ -126,7 +126,7 @@
             * b/c nodes are associated to one or more groups within inventories, you can run commands (and playbooks) against specific hosts and/or groups
             * Makes applying a change to multiple hosts eaiser than applying the change host by host
             * for example
-               * if you have three nodes (classified under the backend group
+               * if you have three nodes (classified under the backend group)
                * you can install a particular piece of software such as java, with a single command instead of repeating it individually against each host
             * Inventory files are written in either INI or YAML format
                * most common format is INI
@@ -138,7 +138,7 @@
                * all hosts are ungrouped
                * Even tho no group is defined explicitly, ansible implicitly creates two groups
                   * all and ungrouped
-               * The all group contains every host defined in the inventory file, groped or not
+               * The all group contains every host defined in the inventory file, grouped or not
                * The ungrouped group contains all hosts that do not have another group besides all (both host fall in this category from the above example)
                * same example in the YAML file below
                   * ungrouped:
@@ -146,7 +146,7 @@
                         * 192.168.1.92:
                         * 192.168.1.92:
                * side bar
-                  * default location for the anisble inventory is /etc/ansible/hosts
+                  * default location for the ansible inventory is /etc/ansible/hosts
                   * If you set host there you are setting the inventory globally and it is not necessary to specify the inventory file location using -i option
                   * You can override the default ansible inventory file location by setting the new location in the ANSIBLE_INVENTORY env variable or within an ansible.cfg file
          * Groups

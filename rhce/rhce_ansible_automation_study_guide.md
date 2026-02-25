@@ -174,4 +174,30 @@
             * Python keywords or playbooks keywords are not valid variable names
             * variable names cannot begin with a number
          * Adding variables to inventory
-            * page 39
+            * A variable lets you change the behavior of a common function by providing a different value as an input parameter 
+            * Example: password could be a variable depending on the environment could have one value or another
+            * Can be used in a variety of places
+                * module arguments 
+                * within conditional when statements
+                * in templates
+                * and in loops 
+            * Set in multiple places 
+                * one of which includes the inventory
+                * In the inventory file you can store variable values to apply to a specific host or group 
+            * Two type of variables 
+                * User variables 
+                    * variables you create, set and use as part of your logic 
+                * Special variables 
+                    * variables provided by ansible 
+                    * Used to get info from Ansible (inventory_file, groups, and so on) as magic variables 
+                    * Or to set the connection details to hosts (ansible_user, ansible_become_user, ansible_ssh_private_key_file)
+            * Setting ansible user in the invetory file 
+                * [webservers]
+                    * web1.example.com ansible_user=vagrant
+                    * Ansible will use the vagrant username instead of the system provided value to establish the SSH connection against the managed host 
+                * YAML 
+                    * webservers: 
+                        * hosts:
+                            * web1.example.com:
+                                * ansible_user: vegrant 
+            * page 40

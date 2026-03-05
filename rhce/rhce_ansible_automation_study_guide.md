@@ -173,7 +173,7 @@
             * Summary, variable name can only include letters, numbers or underscores
             * Python keywords or playbooks keywords are not valid variable names
             * variable names cannot begin with a number
-         * Adding variables to inventory
+        * Adding variables to inventory
             * A variable lets you change the behavior of a common function by providing a different value as an input parameter 
             * Example: password could be a variable depending on the environment could have one value or another
             * Can be used in a variety of places
@@ -199,5 +199,37 @@
                     * webservers: 
                         * hosts:
                             * web1.example.com:
-                                * ansible_user: vegrant 
-            * page 40
+                                * ansible_user: vagrant
+            * If all hosts in a group share a variable value you can apply that variable to all groups at once 
+                * to define a variable to multiple hosts, you can place them in a special section that follows the format
+                    * <group_name>:vars 
+                    * For example to change the ansible port (Port used for establishing the SSH connection) to a different value for all hosts defined in a group
+                    * define a new section with the :vars suffix, as shownin the following snippet 
+                    * [webservers]
+                        * web1.example.com
+                        * web2.example.com
+                    * [webservers:vars]
+                        * ansible_port=5555
+                    * Yaml equivalent
+                        * webservers:
+                            * hosts:
+                                * web1.example.com
+                            * vars: 
+                                * ansible_port: 5555
+        * Multiple inventory files 
+            * As your inventory grows with mroe entries, you may need more than one file to organize your hosts and groups 
+            * There are 4 possible options you can choose beyond using a single file 
+                * You can create a dir with multiple inventory files 
+                * You can pull inventory dynamically, for example, hosts created in the cloud 
+                * You can use a mix of dynamic and static inventory files
+                * You can use the -i argument multiple times to append inventory files 
+* CLI tools 
+    * When installed Ansible CLI tool and a few other CLI tools supporting the Ansible ecosystem were also installed 
+    * Look at two of the most important tools you will use: 
+        * Ansible and ansible-playbook 
+    * Ansible CLI 
+        * The ansible tool defines and runs a single task against a set of hosts
+            * this tool can be used in any situation 
+            * But mainly used for test/demo purposes or executing sporadic tasks (such as shutting down hosts)
+        * page 41
+

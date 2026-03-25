@@ -231,5 +231,35 @@
         * The ansible tool defines and runs a single task against a set of hosts
             * this tool can be used in any situation 
             * But mainly used for test/demo purposes or executing sporadic tasks (such as shutting down hosts)
-        * page 41
+        * Test with pinging two systems 
+            * create an inventory file called inventory with both host IPs defined
+                * 192.168.1.92
+                * 192.168.1.93
+            * Next ping the host using the ansible tool with the previous defined inventory 
+            * The ansible command format uses <pattern> as the first argument and then a list of optional arguments 
+            * The -m argument is used to specify an Ansible module (such as the ping module) to execute the logic of executing a ping to the host 
+            * If no module is set it defaults to the command module, which executes a command against the selected hosts matched by the specific pattern
+            * Note the command(s) will not be processed through the shell 
+            * In a terminal window, run the following command 
+                * ansible all -i inventory -m ping 
+            * May fail because of the target user 
+                * ansible all -i inventory --user vagrant -m ping 
+                    * can specific the user with the --user command 
+            * Note - --ask-pass argument in the command after the user name (to ask for a password)
+        * Table 2-2 ansible optional arguments 
+            * -i, --inventory 
+                * specify inventory host path or a command seperated host file 
+            * -b, --become 
+                * run operations with become (does not imply password prompting)
+                * When using this option the user executing the ansible command "becomes" another user, different from the user who logged in to the machine 
+                * It uses existing privilege escalation tools like sudo, su, pfexec, doas, pbrun, dzdo, ksu, runas, machinectl, and other 
+            * -f <FORKS>, --forks <FORKS>
+                * Specify the number of parallel processes to use defaults to 5
+            * -B <seconds>, --background <Seconds>
+                * runs asynchronously, failing after <seconds>
+            * -K, --ask-become-pass 
+                * Ask for a privilege escalation password 
+            * --become-method <BECOME_METHOD>
+                * Privilege escalation method to use defaults to sudo 
+            * page 43
 
